@@ -217,6 +217,7 @@ namespace GameMainAction {
 	{
 		public FsmInt current_floor;
 		public FsmInt best_floor;
+		public FsmInt review_floor;
 
 		public float delay_time;
 		public override void OnEnter()
@@ -260,7 +261,7 @@ namespace GameMainAction {
 				int iRet = DataManager.Instance.user_data.ReadInt(Defines.KEY_STOP_100);
 				//Debug.Log(iRet);
 
-				if( bIsBestFloor && iNextFloor == 11)
+				if( bIsBestFloor && iNextFloor == review_floor.Value)
 				{
 					Fsm.Event("review");
 				}
