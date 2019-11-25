@@ -312,6 +312,8 @@ namespace GameMainAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			DataManager.Instance.gameSpeedControl.SetIndex(0);
+
 			DataManager.Instance.user_data.AddInt(Defines.KeyGem, 1000);
 			DataManager.Instance.SaveAll();
 #if UNITY_IOS
