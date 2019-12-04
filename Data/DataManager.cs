@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataManager : DataManagerBase<DataManager>
 {
-	string savedata = "test1";
+	string DungeonName = "test1";
 	public const float LONG_TAP_TIME = 0.5f;
 
 	public TextAsset textMasterItem;
@@ -27,7 +27,9 @@ public class DataManager : DataManagerBase<DataManager>
 	public GameSpeedControl gameSpeedControl;
 
 	[HideInInspector]
-	public DataItem dataItem = new DataItem();
+	public DataKvs dataQuest;
+	[HideInInspector]
+	public DataItem dataItem;
 
 	public ConfigHolder config_holder;
 
@@ -104,6 +106,11 @@ public class DataManager : DataManagerBase<DataManager>
 		return bRet;
 	}
 
+	public void LoadDungeonData(string _strDungeon)
+	{
+
+	}
+
 
 
 	public override void Initialize()
@@ -114,7 +121,7 @@ public class DataManager : DataManagerBase<DataManager>
 		masterEnemy.Load(textMasterEnemy);
 		masterFloor.Load(textMasterFloor);
 
-		string data_item = string.Format("{0}/{1}", savedata, "data_item");
+		string data_item = string.Format("{0}/{1}", DungeonName, "data_item");
 		dataItem.SetSaveFilename(data_item);
 		if (false == dataItem.LoadMulti(data_item))
 		{
@@ -130,7 +137,7 @@ public class DataManager : DataManagerBase<DataManager>
 		}
 		dataItem.list.Sort((a, b) => a.item_id - b.item_id);
 
-		string strUserData = string.Format("{0}/{1}", savedata, "user_data");
+		string strUserData = string.Format("{0}/{1}", DungeonName, "user_data");
 		user_data.SetSaveFilename(strUserData);
 		if ( false == user_data.LoadMulti(strUserData))
 		{
