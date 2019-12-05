@@ -25,6 +25,8 @@ public class Defines  {
 	public const string KEY_CHARA_FLOOR_CURRENT = "floor_current";
 	public const string KEY_CHARA_FLOOR_BEST = "floor_best";
 
+	public static string DungeonName = "";
+
 	public const string KEY_RESTART_FLOOR = "floor_restart";
 
 	public const string ATTRIBUTE_NONE = "none";

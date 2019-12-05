@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class DataManager : DataManagerBase<DataManager>
 {
-	string DungeonName = "test1";
+	string floder_name = "test1";
 	public const float LONG_TAP_TIME = 0.5f;
 
 	public TextAsset textMasterItem;
 	public TextAsset textMasterEnemy;
 	public TextAsset textMasterFloor;
+	public TextAsset textMasterDungeon;
 
 	[SerializeField]
 	private UnityEngine.Audio.AudioMixer mixer;
@@ -21,7 +22,9 @@ public class DataManager : DataManagerBase<DataManager>
 	public MasterEnemy masterEnemy = new MasterEnemy();
 	[HideInInspector]
 	public MasterFloor masterFloor = new MasterFloor();
-	
+	[HideInInspector]
+	public MasterDungeon masterDungeon = new MasterDungeon();
+
 	public DataCharaParam dataChara = new DataCharaParam();
 
 	public GameSpeedControl gameSpeedControl;
@@ -60,11 +63,11 @@ public class DataManager : DataManagerBase<DataManager>
 	{
 		get
 		{
-			return Instance.user_data.ReadInt(Defines.KEY_CHARA_FLOOR_BEST);
+			return Instance.user_data.ReadInt( string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST , Defines.DungeonName) );
 		}
 		set
 		{
-			Instance.user_data.WriteInt(Defines.KEY_CHARA_FLOOR_BEST, value);
+			Instance.user_data.WriteInt(string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, Defines.DungeonName), value);
 		}
 	}
 
@@ -120,8 +123,10 @@ public class DataManager : DataManagerBase<DataManager>
 		masterItem.Load(textMasterItem);
 		masterEnemy.Load(textMasterEnemy);
 		masterFloor.Load(textMasterFloor);
+		masterDungeon.Load(textMasterDungeon);
 
-		string data_item = string.Format("{0}/{1}", DungeonName, "data_item");
+		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
+		dataItem = new DataItem();
 		dataItem.SetSaveFilename(data_item);
 		if (false == dataItem.LoadMulti(data_item))
 		{
@@ -137,7 +142,7 @@ public class DataManager : DataManagerBase<DataManager>
 		}
 		dataItem.list.Sort((a, b) => a.item_id - b.item_id);
 
-		string strUserData = string.Format("{0}/{1}", DungeonName, "user_data");
+		string strUserData = string.Format("{0}/{1}", floder_name, "user_data");
 		user_data.SetSaveFilename(strUserData);
 		if ( false == user_data.LoadMulti(strUserData))
 		{

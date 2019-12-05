@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MasterFloorParam : CsvDataParam
 {
+	public string dungeon_name { get; set; }
 	public int floor_id { get; set; }
 	public int start { get; set; }
 	public int end { get; set; }

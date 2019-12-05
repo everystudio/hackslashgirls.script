@@ -99,14 +99,16 @@ namespace GameMainAction {
 			gameMain.ClearDropObjects();
 
 			// 敵キャラとかの作成
-			create_enemies(current_floor.Value);
+			create_enemies(current_floor.Value , Defines.DungeonName );
 		}
 
-		private void create_enemies(int _iCurrentFloor )
+		private void create_enemies(int _iCurrentFloor , string _strDungeonName )
 		{
 			gameMain.ClearEnemy();
 
-			MasterFloorParam floor_param = DataManager.Instance.masterFloor.list.Find(p => p.start <= _iCurrentFloor && _iCurrentFloor <= p.end);
+			MasterFloorParam floor_param = DataManager.Instance.masterFloor.list.Find(p =>
+				p.dungeon_name == _strDungeonName &&
+				(p.start <= _iCurrentFloor && _iCurrentFloor <= p.end));
 
 			int[] enemy_index_prob = floor_param.GetEnemyIndexProb();
 
