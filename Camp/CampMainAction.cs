@@ -21,12 +21,10 @@ namespace CampMainAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			Time.timeScale = 0;
+			Finish();
 		}
 
-		public override void OnUpdate()
-		{
-			base.OnUpdate();
-		}
 	}
 
 	[ActionCategory("CampMainAction")]
@@ -54,6 +52,23 @@ namespace CampMainAction {
 			base.OnUpdate();
 		}
 	}
+
+
+
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class Close : CampMainActionBase
+	{
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			DataManager.Instance.gameSpeedControl.Play();
+			campMain.gameObject.SetActive(false);
+			Finish();
+		}
+
+	}
+
 
 
 }

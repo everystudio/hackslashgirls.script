@@ -37,6 +37,11 @@ public class GameSpeedControl : MonoBehaviour {
 		set_speed();
 	}
 
+	public void Play()
+	{
+		SetIndex(Index);
+	}
+
 	private void set_speed()
 	{
 		Index = Index % speed_arr.Length;
