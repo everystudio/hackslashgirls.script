@@ -70,6 +70,15 @@ public class DataManager : DataManagerBase<DataManager>
 			Instance.user_data.WriteInt(string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, Defines.DungeonName), value);
 		}
 	}
+	public int GetBestFloor(string _strDungeonId )
+	{
+		string key = string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, _strDungeonId);
+		if (Instance.user_data.HasKey(key))
+		{
+			return Instance.user_data.ReadInt(key);
+		}
+		return 0;
+	}
 
 	public int floor_restart
 	{

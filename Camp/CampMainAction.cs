@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace CampMainAction {
 	public class CampMainActionBase : FsmStateAction
@@ -29,6 +30,27 @@ namespace CampMainAction {
 
 	[ActionCategory("CampMainAction")]
 	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class ListClear : CampMainActionBase
+	{
+		public override void OnEnter()
+		{
+			base.OnEnter();
+
+			BannerDungeon[] arr = campMain.m_goListContent.GetComponentsInChildren<BannerDungeon>();
+			foreach (BannerDungeon banner in arr)
+			{
+				GameObject.Destroy(banner.gameObject);
+			}
+
+
+			Finish();
+		}
+
+	}
+
+
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
 	public class Dungeon : CampMainActionBase
 	{
 		public override void OnEnter()
@@ -40,11 +62,19 @@ namespace CampMainAction {
 
 			foreach ( MasterDungeonParam master in DataManager.Instance.masterDungeon.list)
 			{
-				PrefabManager.Instance.MakeScript<Button>(campMain.m_prefBannerDungeon, campMain.m_goListContent);
+				BannerDungeon script = PrefabManager.Instance.MakeScript<BannerDungeon>(campMain.m_prefBannerDungeon, campMain.m_goListContent);
+
+				script.Initialize(master);
+				script.OnEvent.AddListener(OnClickDungeonBanner);
 			}
 
 
 
+		}
+
+		private void OnClickDungeonBanner(string arg0)
+		{
+			Debug.Log("dungeonbanner:" + arg0);
 		}
 
 		public override void OnUpdate()

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MasterDungeonParam : CsvDataParam
 {
-	public string dungeon_name;
-	public string dungeon_label;
+	public string dungeon_id {get; set; }//文字列です
+	public string dungeon_label { get; set; }
 
-	public int floor_max;
+	public int floor_max { get; set; }
 
-	public string outline;
+	public string outline { get; set; }
 
-	public int itme_id_ex_coin;
+	public int itme_id_ex_coin { get; set; }
 }
 
 public class MasterDungeon : CsvData<MasterDungeonParam> {
