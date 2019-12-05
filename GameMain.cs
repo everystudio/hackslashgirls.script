@@ -22,6 +22,8 @@ public class GameMain : Singleton<GameMain> {
 
 	public PanelUnityAdsBonus m_panleUnityAdsBonus;
 
+	public SpriteRenderer m_sprBackGround;
+
 	public GameObject m_goSleepChara;
 	//public GameObject m_goSleepBack;
 
@@ -163,4 +165,12 @@ public class GameMain : Singleton<GameMain> {
 		//m_goSleepBack.SetActive(_bFlag);
 		m_goSleepChara.GetComponent<Animator>().Play("sleep");
 	}
+
+	public void SetBackground(MasterDungeonParam _dungeon)
+	{
+		Debug.Log(_dungeon.background);
+		Debug.Log(SpriteManager.Instance.Get(_dungeon.background));
+		m_sprBackGround.sprite = SpriteManager.Instance.Get(_dungeon.background);
+	}
+
 }

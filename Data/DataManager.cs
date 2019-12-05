@@ -63,11 +63,12 @@ public class DataManager : DataManagerBase<DataManager>
 	{
 		get
 		{
-			return Instance.user_data.ReadInt( string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST , Defines.DungeonName) );
+			// 旧バージョン補正
+			return Instance.user_data.ReadInt( string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST , Defines.CurrentDungeonID) );
 		}
 		set
 		{
-			Instance.user_data.WriteInt(string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, Defines.DungeonName), value);
+			Instance.user_data.WriteInt(string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, Defines.CurrentDungeonID), value);
 		}
 	}
 	public int GetBestFloor(string _strDungeonId )
@@ -106,9 +107,10 @@ public class DataManager : DataManagerBase<DataManager>
 			bRet = true;
 			Instance.user_data.WriteInt(Defines.KEY_CHARA_FLOOR_CURRENT, _iFloor);
 		}
-		if(Instance.user_data.ReadInt(Defines.KEY_CHARA_FLOOR_BEST) <_iFloor )
+		if(Instance.floor_best <_iFloor )
 		{
-			Instance.user_data.WriteInt(Defines.KEY_CHARA_FLOOR_BEST, _iFloor);
+			//Instance.user_data.WriteInt(Defines.KEY_CHARA_FLOOR_BEST, _iFloor);
+			Instance.floor_best = _iFloor;
 			bRet = true;
 		}
 		if (_bSave)

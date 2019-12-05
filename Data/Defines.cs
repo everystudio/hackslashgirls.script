@@ -14,6 +14,8 @@ public class Defines  {
 	public const string KEY_GAMESPEED_INDEX = "game_speed_index";
 	public const string KEY_GAMESPEEDMETER = "game_speed_meter";
 
+	public const string KEY_DUNGEON_ID = "dungeon_id";
+
 	public const string KEY_STOP_100 = "stop_100";
 	public const string KEY_NOT_SLEEP = "not_sleep";
 
@@ -25,7 +27,7 @@ public class Defines  {
 	public const string KEY_CHARA_FLOOR_CURRENT = "floor_current";
 	public const string KEY_CHARA_FLOOR_BEST = "floor_best";
 
-	public static string DungeonName = "";
+	public static string CurrentDungeonID = "dummy";		// 初回で切り替え作業をさせる
 
 	public const string KEY_RESTART_FLOOR = "floor_restart";
 

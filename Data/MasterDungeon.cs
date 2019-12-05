@@ -12,6 +12,10 @@ public class MasterDungeonParam : CsvDataParam
 	public string outline { get; set; }
 
 	public int itme_id_ex_coin { get; set; }
+
+	public int retry { get; set; }
+	public string background { get; set; }
+
 }
 
 public class MasterDungeon : CsvData<MasterDungeonParam> {

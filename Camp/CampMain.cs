@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CampMain : MonoBehaviour {
 
@@ -17,5 +19,17 @@ public class CampMain : MonoBehaviour {
 		m_prefBannerMedal.SetActive(false);
 		m_prefBannerSkin.SetActive(false);
 	}
+
+	public GameObject m_goCampCheck;
+
+	public TextMeshProUGUI m_txtCheckTitle;
+	public TextMeshProUGUI m_txtCheckDetail;
+	public Button m_btnYes;
+	public Button m_btnNo;
+
+
+
+
+
 
 }

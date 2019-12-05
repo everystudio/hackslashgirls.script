@@ -33,6 +33,24 @@ namespace GameMainAction {
 			base.OnUpdate();
 			if (DataManager.Instance.Initialized)
 			{
+				// 旧バージョン補正
+				if(DataManager.Instance.user_data.HasKey(Defines.KEY_CHARA_FLOOR_BEST))
+				{
+					Debug.LogWarning("replace_floor_best");
+					DataManager.Instance.user_data.WriteInt(string.Format("{0}{1}", Defines.KEY_CHARA_FLOOR_BEST, "normal" ),
+						DataManager.Instance.user_data.ReadInt(Defines.KEY_CHARA_FLOOR_BEST));
+					DataManager.Instance.user_data.Remove(Defines.KEY_CHARA_FLOOR_BEST);
+				}
+
+				if( false == DataManager.Instance.user_data.HasKey(Defines.KEY_DUNGEON_ID))
+				{
+					DataManager.Instance.user_data.Write(Defines.KEY_DUNGEON_ID, "normal");
+				}
+
+
+
+
+
 				Finish();
 			}
 		}
@@ -57,9 +75,46 @@ namespace GameMainAction {
 		public override void OnExit()
 		{
 			base.OnExit();
-			gameMain.FadeIn();
 		}
 	}
+
+
+	[ActionCategory("GameMainAction")]
+	[HutongGames.PlayMaker.Tooltip("GameMainAction")]
+	public class DungeonSetup : GameMainActionBase
+	{
+		public FsmString dungeon_id;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+
+			if (DataManager.Instance.user_data.HasKey(Defines.KEY_DUNGEON_ID))
+			{
+				dungeon_id.Value = DataManager.Instance.user_data.Read(Defines.KEY_DUNGEON_ID);
+			}
+			else
+			{
+				dungeon_id.Value = "normal";
+			}
+
+			if ( dungeon_id.Value != Defines.CurrentDungeonID)
+			{
+				Defines.CurrentDungeonID = dungeon_id.Value;
+				MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
+
+				Debug.Log(dungeon_id.Value);
+				// 背景切り替え
+				gameMain.SetBackground(master_dungeon);
+
+			}
+			gameMain.FadeIn();
+
+			Finish();
+		}
+
+	}
+
 
 
 	[ActionCategory("GameMainAction")]
@@ -68,6 +123,9 @@ namespace GameMainAction {
 	{
 		public FsmInt current_floor;
 		public FsmInt best_floor;
+
+		public FsmString dungeon_id;
+
 		public override void OnEnter()
 		{
 			base.OnEnter();
@@ -75,14 +133,13 @@ namespace GameMainAction {
 			int iCurrentFloor = DataManager.Instance.floor_current;
 			current_floor.Value = iCurrentFloor;
 
-			if( 1000 < iCurrentFloor)
+			MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
+
+			if(master_dungeon.floor_max < iCurrentFloor)
 			{
 				iCurrentFloor = 1;
 				current_floor.Value = iCurrentFloor;
 			}
-
-
-
 
 			if (iCurrentFloor < 1)
 			{
@@ -99,15 +156,15 @@ namespace GameMainAction {
 			gameMain.ClearDropObjects();
 
 			// 敵キャラとかの作成
-			create_enemies(current_floor.Value , Defines.DungeonName );
+			create_enemies(current_floor.Value , dungeon_id.Value );
 		}
 
-		private void create_enemies(int _iCurrentFloor , string _strDungeonName )
+		private void create_enemies(int _iCurrentFloor , string _strDungeonId )
 		{
 			gameMain.ClearEnemy();
 
 			MasterFloorParam floor_param = DataManager.Instance.masterFloor.list.Find(p =>
-				p.dungeon_name == _strDungeonName &&
+				p.dungeon_id == _strDungeonId &&
 				(p.start <= _iCurrentFloor && _iCurrentFloor <= p.end));
 
 			int[] enemy_index_prob = floor_param.GetEnemyIndexProb();
