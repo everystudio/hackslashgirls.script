@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class EndingControl : MonoBehaviour {
 
@@ -10,6 +11,15 @@ public class EndingControl : MonoBehaviour {
 
 	public void ReturnGame()
 	{
+		StartCoroutine(CloseEnding());
+	}
+
+	public IEnumerator CloseEnding()
+	{
+		ui_root.SetActive(false);
+		bg.gameObject.SetActive(false);
+
+		yield return null;
 		SceneManager.LoadScene("main");
 	}
 
@@ -29,6 +39,8 @@ public class EndingControl : MonoBehaviour {
 
 	public SpriteRenderer bg;
 	public OverrideSprite chara;
+
+	public GameObject ui_root;
 
 	public TMPro.TextMeshProUGUI m_txtClearComment;
 
@@ -65,7 +77,14 @@ public class EndingControl : MonoBehaviour {
 		MasterDungeonParam dungeon = masterDungeon.list.Find(p => p.dungeon_id == user_data.Read(Defines.KEY_DUNGEON_ID));
 		bg.sprite = SpriteManager.Instance.Get(dungeon.background);
 
-		m_txtClearComment.text = dungeon.clear_comment;
+
+		string[] arr = dungeon.clear_comment.Split(new string[] { "\\n" }, StringSplitOptions.None);
+		Debug.Log(arr.Length);
+		foreach (string p in arr)
+		{
+			m_txtClearComment.text += p;
+			m_txtClearComment.text += "\n";
+		}
 		//Debug.Log(dungeon.prize_id_1);
 
 		string KeyClearedDungeon = string.Format("cleared_dungeon_{0}", dungeon.dungeon_id);

@@ -116,7 +116,7 @@ namespace GameMainAction {
 				Defines.CurrentDungeonID = dungeon_id.Value;
 				MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
 
-				Debug.Log(dungeon_id.Value);
+				//Debug.Log(dungeon_id.Value);
 				// 背景切り替え
 				gameMain.SetBackground(master_dungeon);
 
