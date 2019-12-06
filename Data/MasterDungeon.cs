@@ -16,6 +16,12 @@ public class MasterDungeonParam : CsvDataParam
 	public int retry { get; set; }
 	public string background { get; set; }
 
+
+	public string clear_comment { get; set; }
+	public int prize_id_1 { get; set; }
+	public int prize_id_2 { get; set; }
+
+
 }
 
 public class MasterDungeon : CsvData<MasterDungeonParam> {

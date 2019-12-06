@@ -110,12 +110,76 @@ public class DataItem : CsvData<DataItemParam> {
 		return _iItemId / MasterItem.LargeCategory == MasterItem.CategoryConsumable;
 	}
 
+	public bool AddItem(MasterItemParam _master , int _iItemId, int _iNum)
+	{
+		bool bRet = false;
+
+		bool bCountup = false;
+
+		if (_master.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
+		{
+			bCountup = true;
+		}
+		else if (_master.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
+		{
+			bCountup = true;
+		}
+
+
+
+		if (bCountup)
+		{
+			DataItemParam param = list.Find(p => p.item_id == _iItemId);
+			if (param != null)
+			{
+				param.num += _iNum;
+				bRet = true;
+			}
+			else
+			{
+				DataItemParam add = new DataItemParam();
+				add.item_id = _iItemId;
+				add.num = _iNum;
+				add.serial = NextSerial();
+				add.shortcutable = _master.shortcutable;
+				add.attribute = _master.attribute;
+				add.craft_item_id = _master.craft_item_id;
+				this.list.Add(add);
+				this.list.Sort((a, b) => a.item_id - b.item_id);
+
+				bRet = true;
+			}
+		}
+		else
+		{
+			// こっちはまとめ買いできちゃダメっすね
+			for (int i = 0; i < _iNum; i++)
+			{
+				DataItemParam add = new DataItemParam();
+				add.item_id = _iItemId;
+				add.num = 1;
+				add.serial = NextSerial();
+				add.craft_count = 0;
+				add.shortcutable = _master.shortcutable;
+				add.attribute = _master.attribute;
+				add.craft_item_id = _master.craft_item_id;
+				this.list.Add(add);
+				this.list.Sort((a, b) => a.item_id - b.item_id);
+				bRet = true;
+			}
+
+		}
+		return bRet;
+	}
+
 	public bool AddItem( int _iItemId , int _iNum)
 	{
 		bool bRet = false;
 
 		MasterItemParam master = DataManager.Instance.masterItem.list.Find(p => p.item_id == _iItemId);
 
+		return AddItem(master, _iItemId, _iNum);
+		/*
 		bool bCountup = false;
 
 		if(master.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
@@ -172,6 +236,7 @@ public class DataItem : CsvData<DataItemParam> {
 
 		}
 		return bRet;
+		*/
 	}
 }
 
