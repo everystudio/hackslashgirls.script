@@ -22,14 +22,14 @@ public class MedalPrizeBuyCheck : MonoBehaviour {
 		m_imgPrizeItem.sprite = SpriteManager.Instance.Get(prize_item.sprite_name);
 		MasterItemParam master_token_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.medal_prize_id);
 		m_imgPrizeToken.sprite = SpriteManager.Instance.Get(master_token_item.sprite_name);
-		DataItemParam data_token_item = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.medal_prize_id);
+		DataItemParam data_token_item = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id_medal);
 
 		int token_num = 0;
 		if( data_token_item != null)
 		{
 			token_num = data_token_item.num;
 		}
-
+		//Debug.Log(_master.medal_num);
 		if (_master.medal_num <= token_num)
 		{
 			m_txtCost.text = string.Format("{0} → {1}", token_num, token_num - _master.medal_num);

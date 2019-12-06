@@ -29,8 +29,11 @@ public class CampMain : MonoBehaviour {
 	public Button m_btnYes;
 	public Button m_btnNo;
 
-
-
+	public GameObject m_goSkinCheck;
+	public Image m_imgSkinIcon;
+	public TextMeshProUGUI m_txtSkinName;
+	public Button m_btnSkinYes;
+	public Button m_btnSkinNo;
 
 
 

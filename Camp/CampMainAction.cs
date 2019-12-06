@@ -48,6 +48,13 @@ namespace CampMainAction {
 				GameObject.Destroy(banner.gameObject);
 			}
 
+			BannerSkin[] arr3 = campMain.m_goListContent.GetComponentsInChildren<BannerSkin>();
+			foreach (BannerSkin banner in arr3)
+			{
+				GameObject.Destroy(banner.gameObject);
+			}
+
+			
 			Finish();
 		}
 
@@ -207,15 +214,90 @@ namespace CampMainAction {
 
 			DataManager.Instance.dataItem.AddItem(prize.prize_item_id, 1);
 
+			DataManager.Instance.dataItem.Save();
+
+			campMain.m_goListRoot.SetActive(false);
+			Finish();
+		}
+	}
 
 
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class SkinList : CampMainActionBase
+	{
+		public FsmInt skin_id;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			if (campMain.m_goListRoot.activeSelf == false)
+			{
+				campMain.m_goListRoot.SetActive(true);
+				foreach (MasterSkinParam master in DataManager.Instance.masterSkin.list)
+				{
+					BannerSkin script = PrefabManager.Instance.MakeScript<BannerSkin>(campMain.m_prefBannerSkin, campMain.m_goListContent);
 
+					script.Initialize(master);
+					script.OnClickSkin.AddListener(OnClickBanner);
+				}
+			}
+		}
 
-
+		private void OnClickBanner(int arg0)
+		{
+			skin_id.Value = arg0;
+			Fsm.Event("skin");
 		}
 	}
 
 	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class SkinCheck : CampMainActionBase
+	{
+		public FsmInt skin_id;
+		private MasterSkinParam m_masterSkinParam;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+
+			m_masterSkinParam = DataManager.Instance.masterSkin.list.Find(p => p.skin_id == skin_id.Value);
+			MasterItemParam master_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == m_masterSkinParam.item_id);
+
+			campMain.m_txtSkinName.text = m_masterSkinParam.skin_name;
+			campMain.m_imgSkinIcon.sprite = SpriteManager.Instance.Get(master_item.sprite_name);
+
+			campMain.m_btnSkinYes.onClick.AddListener(OnYes);
+			campMain.m_btnSkinNo.onClick.AddListener(OnNo);
+
+			campMain.m_goSkinCheck.SetActive(true);
+
+		}
+
+		private void OnYes()
+		{
+			GameMain.Instance.ChangeCharaTexture(m_masterSkinParam.texture_name);
+			Fsm.Event("yes");
+		}
+
+		private void OnNo()
+		{
+			Fsm.Event("no");
+		}
+
+		public override void OnExit()
+		{
+			base.OnExit();
+			campMain.m_btnSkinYes.onClick.RemoveListener(OnYes);
+			campMain.m_btnSkinNo.onClick.RemoveListener(OnNo);
+
+			campMain.m_goSkinCheck.SetActive(false);
+
+		}
+	}
+
+
+
+		[ActionCategory("CampMainAction")]
 	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
 	public class Close : CampMainActionBase
 	{

@@ -28,7 +28,7 @@ public class BannerMedalPrize : MonoBehaviour {
 
 		MasterItemParam master_token_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.item_id_medal);
 		DataItemParam data_token_item = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id_medal);
-		m_txtExchange.text = string.Format("{0}必要枚数[{1}]", master_token_item.name, prize_item.price);
+		m_txtExchange.text = string.Format("{0}必要枚数[{1}]", master_token_item.name, _master.medal_num);
 
 		int token_num = 0;
 		if (data_token_item != null)
