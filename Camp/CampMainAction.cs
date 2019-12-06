@@ -42,6 +42,11 @@ namespace CampMainAction {
 				GameObject.Destroy(banner.gameObject);
 			}
 
+			BannerMedalPrize[] arr2= campMain.m_goListContent.GetComponentsInChildren<BannerMedalPrize>();
+			foreach (BannerMedalPrize banner in arr2)
+			{
+				GameObject.Destroy(banner.gameObject);
+			}
 
 			Finish();
 		}
@@ -134,7 +139,81 @@ namespace CampMainAction {
 	}
 
 
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class MedalPrizeList : CampMainActionBase
+	{
+		public FsmInt medal_prize_id;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			if (campMain.m_goListRoot.activeSelf == false)
+			{
+				campMain.m_goListRoot.SetActive(true);
+				foreach (MasterMedalPrizeParam master in DataManager.Instance.masterMedalPrize.list)
+				{
+					BannerMedalPrize script = PrefabManager.Instance.MakeScript<BannerMedalPrize>(campMain.m_prefBannerMedal, campMain.m_goListContent);
 
+					script.Initialize(master);
+					script.OnMedalPrizeId.AddListener(OnClickBanner);
+				}
+			}
+		}
+
+		private void OnClickBanner(int arg0)
+		{
+			medal_prize_id.Value = arg0;
+			Fsm.Event("prize");
+		}
+	}
+
+
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class PrizeCheck : CampMainActionBase
+	{
+		public FsmInt medal_prize_id;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			campMain.m_medalPrizeBuyCheck.gameObject.SetActive(true);
+			MasterMedalPrizeParam prize = DataManager.Instance.masterMedalPrize.list.Find(p => p.medal_prize_id == medal_prize_id.Value);
+			campMain.m_medalPrizeBuyCheck.Initialize(prize);
+		}
+
+		public override void OnExit()
+		{
+			base.OnExit();
+			campMain.m_medalPrizeBuyCheck.gameObject.SetActive(false);
+		}
+	}
+
+
+
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class PrizeBuy : CampMainActionBase
+	{
+		public FsmInt medal_prize_id;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+
+			MasterMedalPrizeParam prize = DataManager.Instance.masterMedalPrize.list.Find(p => p.medal_prize_id == medal_prize_id.Value);
+
+			DataItemParam medal_param = DataManager.Instance.dataItem.list.Find(p => p.item_id == prize.item_id_medal);
+
+			medal_param.num -= prize.medal_num;
+
+			DataManager.Instance.dataItem.AddItem(prize.prize_item_id, 1);
+
+
+
+
+
+
+		}
+	}
 
 	[ActionCategory("CampMainAction")]
 	[HutongGames.PlayMaker.Tooltip("CampMainAction")]

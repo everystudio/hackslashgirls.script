@@ -13,6 +13,8 @@ public class CampMain : MonoBehaviour {
 	public GameObject m_goListRoot;
 	public GameObject m_goListContent;
 
+	public MedalPrizeBuyCheck m_medalPrizeBuyCheck;
+
 	void Start()
 	{
 		m_prefBannerDungeon.SetActive(false);

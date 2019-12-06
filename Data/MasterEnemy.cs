@@ -70,7 +70,7 @@ public class MasterEnemyParam : CsvDataParam
 	{
 		int iRet = 0;
 
-		int[] drop_prob_arr = new int[6]
+		int[] drop_prob_arr = new int[7]
 		{
 			drop_prob,		// セットされたアイテム
 			1000,			// ドロップCoin
@@ -78,9 +78,10 @@ public class MasterEnemyParam : CsvDataParam
 			10,				// ドロップGemの秘伝書
 			drop_prob,		// dtop_item_id_2		
 			drop_prob,		// dtop_item_id_3
+			5000,			// なんかメダルが設定されてたら
 		};
 
-		int []drop_item_id_arr = new int[6]
+		int []drop_item_id_arr = new int[7]
 		{
 			drop_item_id,
 			1,
@@ -88,6 +89,7 @@ public class MasterEnemyParam : CsvDataParam
 			3,
 			drop_item_id_2,
 			drop_item_id_3,
+			1,		// 差し替え必須
 		};
 
 		// Gemの秘伝書が3つ以上ある場合はそれ以上ドロップさせない
@@ -95,6 +97,13 @@ public class MasterEnemyParam : CsvDataParam
 		if(gem_book_check != null)
 		{
 			drop_prob_arr[3] = 0;
+		}
+
+		MasterDungeonParam dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == Defines.CurrentDungeonID);
+		//Debug.Log(dungeon.dungeon_label);
+		if( dungeon.item_id_medal != 0)
+		{
+			drop_item_id_arr[6] = dungeon.item_id_medal;
 		}
 
 

@@ -11,7 +11,7 @@ public class DropObject : MonoBehaviour {
 	private MasterItemParam m_masterItemParam;
 	public void Initialize(MasterItemParam _master )
 	{
-		if ( _master.item_id < 10 )
+		if ( _master.item_id < 100 )
 		{
 			m_sprItems.sprite = SpriteManager.Instance.Get(_master.sprite_holder, _master.sprite_name);
 		}

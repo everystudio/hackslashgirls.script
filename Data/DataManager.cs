@@ -12,6 +12,7 @@ public class DataManager : DataManagerBase<DataManager>
 	public TextAsset textMasterEnemy;
 	public TextAsset textMasterFloor;
 	public TextAsset textMasterDungeon;
+	public TextAsset textMasterMedalPrize;
 
 	[SerializeField]
 	private UnityEngine.Audio.AudioMixer mixer;
@@ -24,6 +25,8 @@ public class DataManager : DataManagerBase<DataManager>
 	public MasterFloor masterFloor = new MasterFloor();
 	[HideInInspector]
 	public MasterDungeon masterDungeon = new MasterDungeon();
+	[HideInInspector]
+	public MasterMedalPrize masterMedalPrize = new MasterMedalPrize();
 
 	public DataCharaParam dataChara = new DataCharaParam();
 
@@ -135,6 +138,7 @@ public class DataManager : DataManagerBase<DataManager>
 		masterEnemy.Load(textMasterEnemy);
 		masterFloor.Load(textMasterFloor);
 		masterDungeon.Load(textMasterDungeon);
+		masterMedalPrize.Load(textMasterMedalPrize);
 
 		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
 		dataItem = new DataItem();
