@@ -78,7 +78,7 @@ public class MasterEnemyParam : CsvDataParam
 			10,				// ドロップGemの秘伝書
 			drop_prob,		// dtop_item_id_2		
 			drop_prob,		// dtop_item_id_3
-			5000,			// なんかメダルが設定されてたら
+			5,			// なんかメダルが設定されてたら
 		};
 
 		int []drop_item_id_arr = new int[7]
