@@ -35,6 +35,13 @@ public class GameSpeedControl : MonoBehaviour {
 		SEControl.Instance.Play("Page 01");
 		Index += 1;
 		set_speed();
+
+
+
+		//GameMain.Instance.ChangeCharaTexture("skin_02_fairy");
+
+
+
 	}
 
 	public void Play()

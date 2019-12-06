@@ -38,6 +38,7 @@ public class CharaControl : MonoBehaviour {
 	[SerializeField]
 	private GameObject m_prefEatEffect;
 
+	public OverrideSprite override_sprite;
 
 
 	public void ResetPosition()

@@ -173,4 +173,11 @@ public class GameMain : Singleton<GameMain> {
 		m_sprBackGround.sprite = SpriteManager.Instance.Get(_dungeon.background);
 	}
 
+	public void ChangeCharaTexture(string _strTextureName)
+	{
+		charaControl.override_sprite.overrideTexture = TextureHolder.Instance.GetTexture(_strTextureName);
+	}
+
+
+
 }
