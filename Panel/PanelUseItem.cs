@@ -65,6 +65,12 @@ public class PanelUseItem : MonoBehaviour {
 			m_txtDelete.text = "捨てる";
 
 		}
+		else if (master_param.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
+		{
+			m_txtName.text = master_param.name;
+			m_txtAct.text = "----";
+			m_txtDelete.text = "捨てる";
+		}
 		else
 		{
 			m_txtName.text = master_param.GetItemName(data_param.craft_count);

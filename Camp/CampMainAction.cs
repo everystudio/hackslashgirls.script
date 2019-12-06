@@ -216,7 +216,6 @@ namespace CampMainAction {
 
 			DataManager.Instance.dataItem.Save();
 
-			campMain.m_goListRoot.SetActive(false);
 			Finish();
 		}
 	}
@@ -276,6 +275,8 @@ namespace CampMainAction {
 		private void OnYes()
 		{
 			GameMain.Instance.ChangeCharaTexture(m_masterSkinParam.texture_name);
+			DataManager.Instance.user_data.WriteInt(Defines.KEY_USE_SKIN_ID, m_masterSkinParam.skin_id);
+			DataManager.Instance.user_data.Save();
 			Fsm.Event("yes");
 		}
 

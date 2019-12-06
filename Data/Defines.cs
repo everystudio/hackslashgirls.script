@@ -18,6 +18,7 @@ public class Defines  {
 
 	public const string KEY_STOP_100 = "stop_100";
 	public const string KEY_NOT_SLEEP = "not_sleep";
+	public const string KEY_USE_SKIN_ID = "use_skin_id";
 
 	// プレイヤーデータ
 	public const string KEY_CHARA_LEVEL = "chara_level";

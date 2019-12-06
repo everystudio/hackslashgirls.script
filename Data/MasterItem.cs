@@ -81,6 +81,8 @@ public class MasterItem : CsvData<MasterItemParam> {
 	public const int CategoryBracelet = 5;
 	public const int CategoryCloak = 6;
 	public const int CategoryHelmet = 7;
+	public const int CategoryAccessary = 8;
+	public const int CategorySkin = 9;
 
 	public const int LargeCategory = 10000;
 

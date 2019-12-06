@@ -91,6 +91,10 @@ namespace PanelItemsAction
 			{
 				Fsm.Event("use");
 			}
+			else if(panel_items.m_panelUseItem.master_param.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
+			{
+				Fsm.Event("use");
+			}
 			else
 			{
 				Fsm.Event("equip");
@@ -206,7 +210,14 @@ namespace PanelItemsAction
 
 		private void use()
 		{
-			Fsm.Event("use");
+			if (panel_items.m_panelUseItem.master_param.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
+			{
+
+			}
+			else {
+				Fsm.Event("use");
+			}
+
 		}
 
 		private void delete()

@@ -116,7 +116,20 @@ public class DataItem : CsvData<DataItemParam> {
 
 		MasterItemParam master = DataManager.Instance.masterItem.list.Find(p => p.item_id == _iItemId);
 
-		if( master.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
+		bool bCountup = false;
+
+		if(master.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
+		{
+			bCountup = true;
+		}
+		else if(master.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
+		{
+			bCountup = true;
+		}
+
+
+
+		if( bCountup)
 		{
 			DataItemParam param = list.Find(p => p.item_id == _iItemId);
 			if(param != null)

@@ -17,7 +17,7 @@ public class BannerSkin : MonoBehaviour {
 	{
 		skin_id = _master.skin_id;
 
-		MasterItemParam item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.item_id);
+		MasterItemParam item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.item_id );
 
 		m_imgIcon.sprite = SpriteManager.Instance.Get(item.sprite_holder, item.sprite_name);
 		m_txtName.text = _master.skin_name;
@@ -30,7 +30,7 @@ public class BannerSkin : MonoBehaviour {
 		}
 		else
 		{
-			DataItemParam item_skin = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id);
+			DataItemParam item_skin = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id && 0 < p.num);
 			if(item_skin != null)
 			{
 				bShow = true;

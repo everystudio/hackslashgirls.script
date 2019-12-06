@@ -84,10 +84,23 @@ namespace GameMainAction {
 	public class DungeonSetup : GameMainActionBase
 	{
 		public FsmString dungeon_id;
+		public FsmInt skin_id;
 
 		public override void OnEnter()
 		{
 			base.OnEnter();
+
+			int use_skin_id = DataManager.Instance.user_data.ReadInt(Defines.KEY_USE_SKIN_ID);
+
+			if(skin_id.Value!= use_skin_id)
+			{
+				skin_id.Value = use_skin_id;
+				MasterSkinParam master_skin = DataManager.Instance.masterSkin.list.Find(p => p.skin_id == use_skin_id);
+				GameMain.Instance.ChangeCharaTexture(master_skin.texture_name);
+			}
+
+
+
 
 			if (DataManager.Instance.user_data.HasKey(Defines.KEY_DUNGEON_ID))
 			{
