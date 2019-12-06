@@ -15,7 +15,7 @@ public class BannerDungeon : MonoBehaviour {
 
 	public void Initialize(MasterDungeonParam _master)
 	{
-		Debug.Log(_master.dungeon_label);
+		//Debug.Log(_master.dungeon_label);
 		m_strDungeonId = _master.dungeon_id;
 		m_txtName.text = _master.dungeon_label;
 		m_txtOutline.text = _master.outline;

@@ -174,7 +174,7 @@ public class DataItem : CsvData<DataItemParam> {
 
 	public bool AddItem( int _iItemId , int _iNum)
 	{
-		bool bRet = false;
+		//bool bRet = false;
 
 		MasterItemParam master = DataManager.Instance.masterItem.list.Find(p => p.item_id == _iItemId);
 

@@ -26,6 +26,7 @@ namespace GameMainAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			Defines.CurrentDungeonID = "";		// 差分検出用
 		}
 
 		public override void OnUpdate()
@@ -291,13 +292,18 @@ namespace GameMainAction {
 		public FsmInt best_floor;
 		public FsmInt review_floor;
 
+		public FsmString dungeon_id;
+
 		public float delay_time;
 		public override void OnEnter()
 		{
 			base.OnEnter();
 			int iNextFloor = current_floor.Value + 1;
 
-			if( 1000 < iNextFloor)
+			MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
+
+
+			if (master_dungeon.floor_max < iNextFloor)
 			{
 				/*
 				if (1001 <= DataManager.Instance.floor_best)
