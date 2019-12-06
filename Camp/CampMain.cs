@@ -26,6 +26,8 @@ public class CampMain : MonoBehaviour {
 
 	public TextMeshProUGUI m_txtCheckTitle;
 	public TextMeshProUGUI m_txtCheckDetail;
+	public GameObject m_goFirstClearPrize;
+
 	public Button m_btnYes;
 	public Button m_btnNo;
 
@@ -34,6 +36,9 @@ public class CampMain : MonoBehaviour {
 	public TextMeshProUGUI m_txtSkinName;
 	public Button m_btnSkinYes;
 	public Button m_btnSkinNo;
+	public GameObject m_goPrizeRoot;
+	public BannerClearPrize prize_1;
+	public BannerClearPrize prize_2;
 
 
 

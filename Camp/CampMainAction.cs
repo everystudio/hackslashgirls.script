@@ -94,12 +94,32 @@ namespace CampMainAction {
 	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
 	public class DungeonCheck : CampMainActionBase
 	{
+		public FsmString dungeon_id;
 		public override void OnEnter()
 		{
 			base.OnEnter();
 			campMain.m_goCampCheck.SetActive(true);
-			campMain.m_txtCheckTitle.text = "注意！";
-			campMain.m_txtCheckDetail.text = "現在のダンジョン探索を中断しますがよろしいでしょうか？";
+
+			MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
+
+			campMain.m_txtCheckTitle.text = master_dungeon.dungeon_label;
+			campMain.m_txtCheckDetail.text = master_dungeon.outline;
+
+			MasterItemParam prize_item_1 = DataManager.Instance.masterItem.list.Find(p => p.item_id == master_dungeon.prize_id_1);
+			MasterItemParam prize_item_2 = DataManager.Instance.masterItem.list.Find(p => p.item_id == master_dungeon.prize_id_2);
+
+			campMain.prize_1.Initialize(prize_item_1);
+			campMain.prize_2.Initialize(prize_item_2);
+
+			if( prize_item_1 == null)
+			{
+				campMain.m_goPrizeRoot.SetActive(false);
+			}
+			else
+			{
+				campMain.m_goPrizeRoot.SetActive(true);
+			}
+
 			campMain.m_btnYes.onClick.AddListener(OnYes);
 			campMain.m_btnNo.onClick.AddListener(OnNo);
 		}
