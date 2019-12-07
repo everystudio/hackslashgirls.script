@@ -46,7 +46,7 @@ public class EndingControl : MonoBehaviour {
 
 	IEnumerator Start()
 	{
-
+		Time.timeScale = 1.0f;
 		masterItem.Load(textMasterItem);
 		masterDungeon.Load(textMasterDungeon);
 		masterSkin.Load(textMasterSkin);
