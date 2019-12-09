@@ -70,6 +70,12 @@ public class EndingControl : MonoBehaviour {
 			skin_id = user_data.ReadInt(Defines.KEY_USE_SKIN_ID);
 		}
 
+		// クソみたいな修正
+		if (skin_id == 0)
+		{
+			skin_id = 1;
+		}
+
 		MasterSkinParam skin = masterSkin.list.Find(p => p.skin_id == skin_id);
 		chara.overrideTexture = TextureHolder.Instance.GetTexture(skin.texture_name);
 

@@ -50,7 +50,7 @@ namespace GameMainAction {
 
 
 
-
+				DataManager.Instance.user_data.Save();
 
 				Finish();
 			}
