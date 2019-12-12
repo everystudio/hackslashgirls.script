@@ -20,6 +20,8 @@ public class EndingControl : MonoBehaviour {
 		bg.gameObject.SetActive(false);
 
 		yield return null;
+		yield return null;
+		yield return null;
 		SceneManager.LoadScene("main");
 	}
 
