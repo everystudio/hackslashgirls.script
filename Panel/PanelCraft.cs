@@ -19,6 +19,7 @@ public class PanelCraft : MonoBehaviour {
 	public TextMeshProUGUI m_textBaseName;
 	public TextMeshProUGUI m_textElementName;
 	public TextMeshProUGUI m_textResultName;
+	public TextMeshProUGUI m_textBikou;
 
 	public TextMeshProUGUI m_textCraftCount;
 

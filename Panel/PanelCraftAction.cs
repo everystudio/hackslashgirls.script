@@ -59,6 +59,7 @@ namespace PanelCraftAction {
 			panel.m_btnExe.interactable = false;
 			panel.m_btnReset.interactable = false;
 			panel.m_btnCancel.onClick.AddListener(OnClose);
+			panel.m_textBikou.text = "";
 
 			panel.m_btnBulk.onClick.AddListener(OnBulk);
 		}
@@ -178,6 +179,31 @@ namespace PanelCraftAction {
 			int iAddCraftCount = panel.m_iCraftBulkCount;
 
 			string now_item_name = master_now.GetItemName(data.craft_count);
+
+
+			int category = data.item_id / MasterItem.LargeCategory;
+			string bikou = "";
+			switch( category)
+			{
+				case MasterItem.CategoryWeapon:
+					bikou = "：Atkが上がります";
+					break;
+				case MasterItem.CategoryArmor:
+					bikou = "：Defが上がります";
+					break;
+				case MasterItem.CategoryBracelet:
+					bikou = "：Staminaの最大値が上がります";
+					break;
+				case MasterItem.CategoryCloak:
+					bikou = "：最大HPが上がります";
+					break;
+				case MasterItem.CategoryHelmet:
+					bikou = "：Magが上がります(魔法攻撃力アップ)";
+					break;
+				default:
+					break;
+			}
+			panel.m_textBikou.text = bikou;
 
 			string next_item_name = "";
 			if( master_now.limit < data.craft_count + iAddCraftCount)
