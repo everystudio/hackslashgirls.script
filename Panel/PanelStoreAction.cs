@@ -44,7 +44,10 @@ namespace PanelStoreAction {
 		{
 			base.OnEnter();
 
-			shop_id.Value = (DataManager.Instance.floor_best-1) / 100 + 1;
+
+			int iFloorBest = DataManager.Instance.GetBestFloor("normal");
+
+			shop_id.Value = (iFloorBest - 1) / 100 + 1;
 
 			panel_store.m_panelCategory.HandleCategoryButton.AddListener(OnCategory);
 			panel_store.ShowList(shop_id.Value, category.Value);
