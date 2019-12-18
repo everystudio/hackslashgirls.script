@@ -32,6 +32,8 @@ public class BtnShortcut : MonoBehaviour {
 	public DataItemParam m_dataSetItemParam;
 	private MasterItemParam m_masterSetItemParam;
 
+	private AccessaryBase accessaryBase;
+
 	[SerializeField]
 	private Button m_btn;
 	[SerializeField]
@@ -93,6 +95,11 @@ public class BtnShortcut : MonoBehaviour {
 
 		m_iItemSerial = 0;
 		m_dataSetItemParam = null;
+
+		if (accessaryBase != null)
+		{
+			accessaryBase.accessary = null;
+		}
 	}
 
 	public void SetShortcut(int _iItemSerial)
@@ -122,7 +129,20 @@ public class BtnShortcut : MonoBehaviour {
 		{
 			strNum = string.Format("x{0}", m_dataSetItemParam.num);
 		}
-		else if(m_dataSetItemParam != null && m_dataSetItemParam.item_id / MasterItem.LargeCategory == MasterItem.CategoryMagic)
+		else if (m_dataSetItemParam != null && m_dataSetItemParam.item_id / MasterItem.LargeCategory == MasterItem.CategoryAccessary)
+		{
+			MasterAccessaryParam ac = DataManager.Instance.masterAccessary.list.Find(p => p.item_id == m_dataSetItemParam.item_id);
+			strNum = ac.label;
+
+			if (accessaryBase == null)
+			{
+				GameObject obj_accessary = new GameObject();
+				obj_accessary.name = string.Format("{0}_accessary", gameObject.name);
+				accessaryBase = obj_accessary.AddComponent<AccessaryBase>();
+			}
+			accessaryBase.accessary = ac;
+		}
+		else if (m_dataSetItemParam != null && m_dataSetItemParam.item_id / MasterItem.LargeCategory == MasterItem.CategoryMagic)
 		{
 			strNum = string.Format("x{0}", m_dataSetItemParam.num);
 		}

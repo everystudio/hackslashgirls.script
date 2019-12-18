@@ -221,6 +221,10 @@ namespace PanelStatusAction {
 				}
 				Finish();
 			}
+			else if (iLargeCategory == MasterItem.CategoryAccessary)
+			{
+				Fsm.Event("shortcut_set");
+			}
 			else
 			{
 				EquipChange(iLargeCategory);

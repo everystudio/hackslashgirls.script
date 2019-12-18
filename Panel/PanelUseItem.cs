@@ -38,6 +38,26 @@ public class PanelUseItem : MonoBehaviour {
 
 		m_txtDetail.text = master_param.detail;
 
+		if( master_param.item_id / MasterItem.LargeCategory == MasterItem.CategoryAccessary)
+		{
+			string seinou = "";
+
+			MasterAccessaryParam accessary = DataManager.Instance.masterAccessary.list.Find(p => p.item_id == master_param.item_id);
+			MasterItemParam use_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == accessary.use_item_id);
+			if( 0 < accessary.hp_rate)
+			{
+				seinou = string.Format("ショートカットにセットしている時、<color=#FF0>HPが{0}％未満</color>になると、<color=#0FF>{1}</color>を使用。({2:0.0}秒間隔)", accessary.hp_rate, use_item.name, accessary.interval);
+			}
+			else if( 0 < accessary.stamina_rate)
+			{
+				seinou = string.Format("ショートカットにセットしている時、<color=#FF0>Staminaが{0}％未満</color>になると、<color=#0FF>{1}</color>を使用。({2:0.0}秒間隔)", accessary.hp_rate, use_item.name, accessary.interval);
+			}
+			m_txtDetail.text += "\n" + seinou;
+			/*
+			*/
+		}
+
+
 		m_btnAct.interactable = true;
 
 		if (master_param.item_id == 11001)
@@ -52,11 +72,8 @@ public class PanelUseItem : MonoBehaviour {
 			}
 		}
 
-
 		m_imgIcon.sprite = SpriteManager.Instance.Get(master_param.sprite_holder, master_param.sprite_name);
 		m_imgIcon.color = master_param.GetSpriteColor();
-
-
 
 		if (master_param.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
 		{
@@ -70,6 +87,16 @@ public class PanelUseItem : MonoBehaviour {
 			m_txtName.text = master_param.name;
 			m_txtAct.text = "----";
 			m_txtDelete.text = "捨てる";
+		}
+		else if (master_param.item_id / MasterItem.LargeCategory == MasterItem.CategoryAccessary)
+		{
+			m_txtName.text = master_param.name;
+			m_txtAct.text = "----";
+			m_txtDelete.text = "捨てる";
+
+			m_btnAct.interactable = false;
+			m_btnDelete.interactable = false;
+
 		}
 		else
 		{
@@ -100,6 +127,13 @@ public class PanelUseItem : MonoBehaviour {
 					m_btnAct.interactable = false;
 				}
 			}
+			else if (master_param.item_id / MasterItem.LargeCategory == MasterItem.CategoryAccessary)
+			{
+				m_btnAct.interactable = false;
+				m_btnDelete.interactable = false;
+			}
+
+
 		}
 		else
 		{

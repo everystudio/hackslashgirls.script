@@ -34,7 +34,7 @@ public class GameSpeedControl : MonoBehaviour {
 
 	public void SetIndex( int _iIndex)
 	{
-		Debug.LogWarning(_iIndex);
+		//Debug.LogWarning(_iIndex);
 		Index = _iIndex;
 		set_speed();
 	}

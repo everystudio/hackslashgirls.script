@@ -91,7 +91,7 @@ public class EndingControl : MonoBehaviour {
 
 
 		string[] arr = dungeon.clear_comment.Split(new string[] { "\\n" }, StringSplitOptions.None);
-		Debug.Log(arr.Length);
+		//Debug.Log(arr.Length);
 		foreach (string p in arr)
 		{
 			m_txtClearComment.text += p;

@@ -186,6 +186,15 @@ public class DataCharaParam : CsvDataParam
 		return SPEED_BASE + SPEED_PITCH * _iLevel;
 	}
 
+	public int GetHpRate()
+	{
+		return (int)(((float)hp / (float)hp_max)*100);
+	}
+	public int GetStaminaRate()
+	{
+		return (int)(((float)hunger / (float)hunger_max) * 100);
+	}
+
 	// 現在のレベルに合わせてパラメータを調整する
 	public void LevelUp()
 	{

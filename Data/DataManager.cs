@@ -14,6 +14,7 @@ public class DataManager : DataManagerBase<DataManager>
 	public TextAsset textMasterDungeon;
 	public TextAsset textMasterMedalPrize;
 	public TextAsset textMasterSkin;
+	public TextAsset textMasterAccessary;
 
 	[SerializeField]
 	private UnityEngine.Audio.AudioMixer mixer;
@@ -30,6 +31,8 @@ public class DataManager : DataManagerBase<DataManager>
 	public MasterMedalPrize masterMedalPrize = new MasterMedalPrize();
 	[HideInInspector]
 	public MasterSkin masterSkin = new MasterSkin();
+	[HideInInspector]
+	public MasterAccessary masterAccessary = new MasterAccessary();
 
 	public DataCharaParam dataChara = new DataCharaParam();
 
@@ -143,6 +146,7 @@ public class DataManager : DataManagerBase<DataManager>
 		masterDungeon.Load(textMasterDungeon);
 		masterMedalPrize.Load(textMasterMedalPrize);
 		masterSkin.Load(textMasterSkin);
+		masterAccessary.Load(textMasterAccessary);
 
 		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
 		dataItem = new DataItem();
@@ -211,7 +215,7 @@ public class DataManager : DataManagerBase<DataManager>
 		if(user_data.HasKey(Defines.KEY_GAMESPEED_LEVEL))
 		{
 			int game_speed_level = user_data.ReadInt(Defines.KEY_GAMESPEED_LEVEL);
-			Debug.Log(game_speed_level);
+			//Debug.Log(game_speed_level);
 			gameSpeedControl.SetSpeedLevel(game_speed_level);
 		}
 
