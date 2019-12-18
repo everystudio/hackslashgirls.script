@@ -46,8 +46,12 @@ public class EndingControl : MonoBehaviour {
 
 	public TMPro.TextMeshProUGUI m_txtClearComment;
 
+	public GameObject m_goAutoCloseMessage;
+
 	IEnumerator Start()
 	{
+		m_goAutoCloseMessage.SetActive(false);
+
 		Time.timeScale = 1.0f;
 		masterItem.Load(textMasterItem);
 		masterDungeon.Load(textMasterDungeon);
@@ -113,7 +117,20 @@ public class EndingControl : MonoBehaviour {
 			}
 			dataItem.Save();
 		}
+		else
+		{
+			m_goAutoCloseMessage.SetActive(true);
+			StartCoroutine(AutoClose());
+		}
 		user_data.Save();
 	}
 
+	private IEnumerator AutoClose()
+	{
+		yield return new WaitForSeconds(10.0f);
+
+		ReturnGame();
+
+		
+	}
 }
