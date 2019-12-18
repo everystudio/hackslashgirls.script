@@ -10,6 +10,14 @@ public class GameSpeedControl : MonoBehaviour {
 	public GameObject[] img_arr;
 
 	private int Index;
+	public int GetSpeedLevel()
+	{
+		return Index + 1;
+	}
+	public void SetSpeedLevel(int _iLevel)
+	{
+		SetIndex(_iLevel - 1);
+	}
 
 	public GameObject m_goMeterArrow;
 	public GameObject m_goMeterChara;
@@ -21,11 +29,12 @@ public class GameSpeedControl : MonoBehaviour {
 			Debug.LogError("not same");
 		}
 
-		SetIndex(0);
+		SetIndex(Index);
 	}
 
 	public void SetIndex( int _iIndex)
 	{
+		Debug.LogWarning(_iIndex);
 		Index = _iIndex;
 		set_speed();
 	}

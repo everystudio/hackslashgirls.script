@@ -208,6 +208,12 @@ public class DataManager : DataManagerBase<DataManager>
 
 		SetSpeedMeter(user_data.ReadInt(Defines.KEY_GAMESPEEDMETER) );
 
+		if(user_data.HasKey(Defines.KEY_GAMESPEED_LEVEL))
+		{
+			int game_speed_level = user_data.ReadInt(Defines.KEY_GAMESPEED_LEVEL);
+			Debug.Log(game_speed_level);
+			gameSpeedControl.SetSpeedLevel(game_speed_level);
+		}
 
 		//Debug.Log(user_data.list.Count);
 		foreach ( CsvKvsParam p in user_data.list)

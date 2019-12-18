@@ -11,7 +11,7 @@ public class Defines  {
 	public const float SOUND_VOLUME_MAX = 0.0f;
 	public const float SOUND_VOLME_MIN = -80.0f;
 
-	public const string KEY_GAMESPEED_INDEX = "game_speed_index";
+	public const string KEY_GAMESPEED_LEVEL = "game_speed_level";
 	public const string KEY_GAMESPEEDMETER = "game_speed_meter";
 
 	public const string KEY_DUNGEON_ID = "dungeon_id";
