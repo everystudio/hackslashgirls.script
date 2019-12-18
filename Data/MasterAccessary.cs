@@ -17,6 +17,7 @@ public class MasterAccessaryParam : CsvDataParam
 
 	public string log_format { get; set; }
 
+	public int situation { get; set; }
 }
 
 public class MasterAccessary : CsvData<MasterAccessaryParam> {

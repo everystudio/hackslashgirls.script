@@ -41,6 +41,8 @@ public class CharaControl : MonoBehaviour {
 	public OverrideSprite override_sprite;
 
 
+	public bool IsBattle;
+
 	public void ResetPosition()
 	{
 		gameObject.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);

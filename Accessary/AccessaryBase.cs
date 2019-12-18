@@ -38,10 +38,41 @@ public class AccessaryBase : MonoBehaviour {
 			return;
 		}
 
-		delta_time += Time.deltaTime;
+		bool bUpdateTime = false;
+		if( accessary.situation == 0)
+		{
+			bUpdateTime = true;
+		}
+		else if( accessary.situation == 1 && GameMain.Instance.charaControl.IsBattle == true)
+		{
+			bUpdateTime = true;
+		}
+		if (bUpdateTime)
+		{
+			delta_time += Time.deltaTime;
+		}
+
+
 		if( accessary.interval < delta_time)
 		{
-			if( 0 < accessary.hp_rate)
+			if(0 < accessary.hp_rate && 0 < accessary.stamina_rate)
+			{
+				int hp_rate = DataManager.Instance.dataChara.GetHpRate();
+				int stamina_rate = DataManager.Instance.dataChara.GetStaminaRate();
+				if (hp_rate < accessary.hp_rate && stamina_rate < accessary.stamina_rate)
+				{
+					if (UseItem())
+					{
+						MasterItemParam master = DataManager.Instance.masterItem.list.Find(p => p.item_id == accessary.use_item_id);
+						GameMain.Instance.BattleLog(string.Format(accessary.log_format, master.name));
+					}
+					else
+					{
+						GameMain.Instance.BattleLog("アイテムの使用に失敗");
+					}
+				}
+			}
+			else if( 0 < accessary.hp_rate)
 			{
 				delta_time = 0.0f;
 				int hp_rate = DataManager.Instance.dataChara.GetHpRate();

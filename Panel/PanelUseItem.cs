@@ -52,6 +52,10 @@ public class PanelUseItem : MonoBehaviour {
 			{
 				seinou = string.Format("ショートカットにセットしている時、<color=#FF0>Staminaが{0}％未満</color>になると、<color=#0FF>{1}</color>を使用。({2:0.0}秒間隔)", accessary.hp_rate, use_item.name, accessary.interval);
 			}
+			if( accessary.situation == 1)
+			{
+				seinou += "<color=red>効果はバトル中のみ</color>";
+			}
 			m_txtDetail.text += "\n" + seinou;
 			/*
 			*/

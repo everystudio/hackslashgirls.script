@@ -112,6 +112,7 @@ namespace CharaControlAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			charaControl.IsBattle = false;
 		}
 		public override void OnExit()
 		{
@@ -243,6 +244,8 @@ namespace CharaControlAction {
 		{
 			//Debug.Log(attack_interval.Value);
 			base.OnEnter();
+
+			charaControl.IsBattle = true;
 		}
 
 		public override void OnUpdate()
@@ -337,6 +340,8 @@ namespace CharaControlAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			charaControl.IsBattle = false;
+
 			delay_time = 2.0f;
 			charaControl.HandleRequestDead.Invoke();
 		}
