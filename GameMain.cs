@@ -175,7 +175,7 @@ public class GameMain : Singleton<GameMain> {
 
 	public void ChangeCharaTexture(string _strTextureName)
 	{
-		charaControl.override_sprite.overrideTexture = TextureHolder.Instance.GetTexture(_strTextureName);
+		charaControl.override_sprite.overrideTexture = HackslashGirls.TextureHolder.Instance.GetTexture(_strTextureName);
 	}
 
 
