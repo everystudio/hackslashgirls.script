@@ -12,6 +12,13 @@ public class AdsBanner : MonoBehaviour {
 	string adUnitIdIOS = "";
 	BannerView view = null;        // 縦画面
 
+	public enum POSITION{
+		BOTTOM,
+		TOP	,
+		MAX
+	};
+	public POSITION banner_position;
+
 	void Start()
 	{
 		if (adUnitIdAndroid.Equals(""))
@@ -42,7 +49,14 @@ public class AdsBanner : MonoBehaviour {
 #elif UNITY_IOS
 		strUnitId = adUnitIdIOS;
 #endif
-		view = new BannerView(strUnitId, AdSize.Banner, AdPosition.Bottom);
+		if (banner_position == POSITION.TOP)
+		{
+			view = new BannerView(strUnitId, AdSize.Banner, AdPosition.Top);
+		}
+		else
+		{
+			view = new BannerView(strUnitId, AdSize.Banner, AdPosition.Bottom);
+		}
 		// Create an empty ad request.
 		AdRequest request = new AdRequest.Builder()
 			.AddTestDevice("B58A62380C00BF9DC7BA75C756B5F550")

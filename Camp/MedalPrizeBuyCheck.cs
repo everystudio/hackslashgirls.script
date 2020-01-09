@@ -20,7 +20,7 @@ public class MedalPrizeBuyCheck : MonoBehaviour {
 		MasterItemParam prize_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.prize_item_id);
 		m_txtPrizeName.text = prize_item.name;
 		m_imgPrizeItem.sprite = SpriteManager.Instance.Get(prize_item.sprite_name);
-		MasterItemParam master_token_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.medal_prize_id);
+		MasterItemParam master_token_item = DataManager.Instance.masterItem.list.Find(p => p.item_id == _master.item_id_medal);
 		m_imgPrizeToken.sprite = SpriteManager.Instance.Get(master_token_item.sprite_name);
 		DataItemParam data_token_item = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id_medal);
 
