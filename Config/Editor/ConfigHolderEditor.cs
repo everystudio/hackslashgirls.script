@@ -75,6 +75,11 @@ public class ConfigHolderEditor : ScriptableObject
 					break;
 				case "target_env":
 					asset.app_environment = args[i + 1];
+
+					if (args[i + 1] == "development")
+					{
+						PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, PlayerSettings.applicationIdentifier + ".development");
+					}
 					break;
 				case "build_number":
 					PlayerSettings.iOS.buildNumber = args[i + 1];
