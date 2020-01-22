@@ -41,6 +41,8 @@ public class PanelCraft : MonoBehaviour {
 
 	public int m_iCraftBulkCount;
 
+	public TextMeshProUGUI m_txtElement;
+
 	[System.Serializable]
 	public class UnityEventDataItemParam : UnityEvent<DataItemParam>
 	{

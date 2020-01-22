@@ -51,7 +51,9 @@ public class DataItemParam : CsvDataParam
 
 
 			case 11001:
-				bRet = GameMain.Instance.ShowAd(master.param);
+				int get_num = PanelBookCheck.GetBookGemNum();
+
+				bRet = GameMain.Instance.ShowAd(get_num);
 				if( bRet == false)
 				{
 					GameMain.Instance.panelCaution.Show("注意", "現在秘伝書は使えません。\nしばらく時間をあけてください");

@@ -22,6 +22,7 @@ public class MasterItemParam : CsvDataParam
 
 	public string attribute{get; set;}
 	public int craft_item_id { get; set; }
+	public int craft_gem_num { get; set; }
 
 	public string sprite_holder { get; set; }
 	public string sprite_name { get; set; }

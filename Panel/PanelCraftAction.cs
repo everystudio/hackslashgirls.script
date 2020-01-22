@@ -25,6 +25,7 @@ namespace PanelCraftAction {
 
 			GameMain.Instance.Message(PanelMessage.MENU.MESSAGE_CRAFT);
 
+			panel.m_txtElement.text = "素材";
 		}
 		public override void OnUpdate()
 		{
@@ -178,6 +179,8 @@ namespace PanelCraftAction {
 
 			int iAddCraftCount = panel.m_iCraftBulkCount;
 
+			panel.m_txtElement.text = string.Format("強化1回あたり<color=#FF0>{0}ジェム</color>必要", master_now.craft_gem_num);
+
 			string now_item_name = master_now.GetItemName(data.craft_count);
 
 
@@ -249,7 +252,13 @@ namespace PanelCraftAction {
 
 			can_craft = true;
 
-			if(DataManager.Instance.user_data.ReadInt(Defines.KeyGem) < iAddCraftCount)
+			int iRequestGem = master_now.craft_gem_num * panel.m_iCraftBulkCount;
+
+			panel.m_textCraftCount.text = string.Format("x{0}", iRequestGem);
+
+
+
+			if (DataManager.Instance.user_data.ReadInt(Defines.KeyGem) < iRequestGem)
 			{
 				can_craft = false;
 			}
@@ -351,6 +360,9 @@ namespace PanelCraftAction {
 				data.craft_count += iAddCraftCount;
 			}
 
+			int iRequestGem = master_now.craft_gem_num * iAddCraftCount;
+
+
 			string strResult = "success";
 
 			if( master_now.limit <= data.craft_count && master_next != null)
@@ -369,7 +381,7 @@ namespace PanelCraftAction {
 				DataItemParam data_element = DataManager.Instance.dataItem.list.Find(p => p.item_id == element_item_id.Value);
 				data_element.num -= iAddCraftCount;
 
-				DataManager.Instance.user_data.AddInt(Defines.KeyGem, -1 * iAddCraftCount );
+				DataManager.Instance.user_data.AddInt(Defines.KeyGem, -1 * iRequestGem);
 
 				DataManager.Instance.dataItem.Save();
 				DataManager.Instance.user_data.Save();

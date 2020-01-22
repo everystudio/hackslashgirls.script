@@ -156,7 +156,7 @@ namespace GemBookAction {
 
 			DataItemParam data_item = DataManager.Instance.dataItem.list.Find(p => p.item_id == Defines.ITEM_ID_GEM_BOOK);
 
-			Debug.Log(data_item.num);
+			//Debug.Log(data_item.num);
 			if( 0 < data_item.num)
 			{
 				data_item.num -= 1;
