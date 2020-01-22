@@ -152,7 +152,7 @@ public class GameMain : Singleton<GameMain> {
 		{
 			DataManager.Instance.user_data.AddInt(Defines.KeyGem, _iAdd);
 			Advertisement.Show();
-
+			m_panleUnityAdsBonus.SetNum(_iAdd);
 			m_panleUnityAdsBonus.gameObject.SetActive(true);
 			return true;
 		}
