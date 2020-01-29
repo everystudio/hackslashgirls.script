@@ -36,6 +36,25 @@ public class AdsBanner : MonoBehaviour {
 		}
 	}
 
+	public void Show( string _strUnitId)
+	{
+		if (banner_position == POSITION.TOP)
+		{
+			view = new BannerView(_strUnitId, AdSize.Banner, AdPosition.Top);
+		}
+		else
+		{
+			view = new BannerView(_strUnitId, AdSize.Banner, AdPosition.Bottom);
+		}
+		// Create an empty ad request.
+		AdRequest request = new AdRequest.Builder()
+			.AddTestDevice("B58A62380C00BF9DC7BA75C756B5F550")
+			.AddTestDevice("30ec665ef7c68238905003e951174579")
+			.Build();
+		// Load the banner with the request.
+		view.LoadAd(request);
+	}
+
 	public void Show()
 	{
 		if(view != null)
@@ -49,21 +68,7 @@ public class AdsBanner : MonoBehaviour {
 #elif UNITY_IOS
 		strUnitId = adUnitIdIOS;
 #endif
-		if (banner_position == POSITION.TOP)
-		{
-			view = new BannerView(strUnitId, AdSize.Banner, AdPosition.Top);
-		}
-		else
-		{
-			view = new BannerView(strUnitId, AdSize.Banner, AdPosition.Bottom);
-		}
-		// Create an empty ad request.
-		AdRequest request = new AdRequest.Builder()
-			.AddTestDevice("B58A62380C00BF9DC7BA75C756B5F550")
-			.AddTestDevice("30ec665ef7c68238905003e951174579")
-			.Build();
-		// Load the banner with the request.
-		view.LoadAd(request);
+		Show(strUnitId);
 	}
 	public void Hide()
 	{

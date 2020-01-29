@@ -8,6 +8,8 @@ public class DataManager : DataManagerBase<DataManager>
 	string floder_name = "test1";
 	public const float LONG_TAP_TIME = 0.5f;
 
+	public TextAsset textMasterGameRule;
+
 	public TextAsset textMasterItem;
 	public TextAsset textMasterEnemy;
 	public TextAsset textMasterFloor;
@@ -18,6 +20,9 @@ public class DataManager : DataManagerBase<DataManager>
 
 	[SerializeField]
 	private UnityEngine.Audio.AudioMixer mixer;
+
+	[HideInInspector]
+	public CsvKvs masterGameRule = new CsvKvs();
 
 	[HideInInspector]
 	public MasterItem masterItem = new MasterItem();
@@ -44,6 +49,10 @@ public class DataManager : DataManagerBase<DataManager>
 	public DataItem dataItem;
 
 	public ConfigHolder config_holder;
+
+	public CharaControl chara_control;
+	public AdsBanner adsbanner_top;
+	public AdsBanner adsbanner_bottom;
 
 	public void SaveAll()
 	{
@@ -139,6 +148,25 @@ public class DataManager : DataManagerBase<DataManager>
 	public override void Initialize()
 	{
 		base.Initialize();
+
+		masterGameRule.Load(textMasterGameRule);
+
+		if(masterGameRule.Read("charamode") == "multi")
+		{
+			chara_control.m_multiSprite.enabled = true;
+			chara_control.m_singleSprite.enabled = false;
+		}
+		else
+		{
+			chara_control.m_multiSprite.enabled = false;
+			chara_control.m_singleSprite.enabled = true;
+		}
+
+		adsbanner_top.Show(masterGameRule.Read("adbanner_top"));
+		adsbanner_bottom.Show(masterGameRule.Read("adbanner_bottom"));
+
+
+
 
 		masterItem.Load(textMasterItem);
 		masterEnemy.Load(textMasterEnemy);

@@ -7,6 +7,9 @@ public class CharaControl : MonoBehaviour {
 
 	public bool IsStandby;
 
+	public SpriteRenderer m_multiSprite;
+	public SpriteRenderer m_singleSprite;
+
 	public UnityEvent HandleRequestGameStart = new UnityEvent();
 	public UnityEvent HandleRequestMove = new UnityEvent();
 	public UnityEvent HandleRequestRestart = new UnityEvent();

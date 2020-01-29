@@ -175,7 +175,15 @@ public class GameMain : Singleton<GameMain> {
 
 	public void ChangeCharaTexture(string _strTextureName)
 	{
-		charaControl.override_sprite.overrideTexture = TextureManager.Instance.Get(_strTextureName);
+		if (charaControl.m_multiSprite.enabled == true)
+		{
+			charaControl.override_sprite.overrideTexture = TextureManager.Instance.Get(_strTextureName);
+		}
+		else
+		{
+			charaControl.m_singleSprite.sprite = SpriteManager.Instance.Get(_strTextureName);
+		}
+
 	}
 
 
