@@ -83,7 +83,7 @@ public class EndingControl : MonoBehaviour {
 		}
 
 		MasterSkinParam skin = masterSkin.list.Find(p => p.skin_id == skin_id);
-		chara.overrideTexture = HackslashGirls.TextureHolder.Instance.GetTexture(skin.texture_name);
+		chara.overrideTexture = TextureManager.Instance.Get(skin.texture_name);
 
 
 		MasterDungeonParam dungeon = masterDungeon.list.Find(p => p.dungeon_id == user_data.Read(Defines.KEY_DUNGEON_ID));
