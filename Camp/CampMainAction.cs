@@ -294,7 +294,7 @@ namespace CampMainAction {
 
 		private void OnYes()
 		{
-			GameMain.Instance.ChangeCharaTexture(m_masterSkinParam.texture_name);
+			GameMain.Instance.ChangeCharaTexture(m_masterSkinParam);
 			DataManager.Instance.user_data.WriteInt(Defines.KEY_USE_SKIN_ID, m_masterSkinParam.skin_id);
 			DataManager.Instance.user_data.Save();
 			Fsm.Event("yes");

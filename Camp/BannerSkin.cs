@@ -28,6 +28,12 @@ public class BannerSkin : MonoBehaviour {
 		{
 			bShow = true;
 		}
+		else if( _master.limit == false)
+		{
+			// なんか素直なプログラムじゃない
+			// 制限されてないものは表示対象
+			bShow = true;
+		}
 		else
 		{
 			DataItemParam item_skin = DataManager.Instance.dataItem.list.Find(p => p.item_id == _master.item_id && 0 < p.num);

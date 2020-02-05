@@ -6,6 +6,9 @@ using UnityEngine;
 public class DataManager : DataManagerBase<DataManager>
 {
 	string floder_name = "test1";
+
+	public static readonly string SS_MASTER = "1x5AkI593bJ9GtKUCItDk45h24xkIQIbXVNct9DhWD2U";
+
 	public const float LONG_TAP_TIME = 0.5f;
 
 	public TextAsset textMasterGameRule;
@@ -147,11 +150,16 @@ public class DataManager : DataManagerBase<DataManager>
 
 	public override void Initialize()
 	{
+		StartCoroutine(initialize());
+	}
+
+	private IEnumerator initialize()
+	{
 		base.Initialize();
 
 		masterGameRule.Load(textMasterGameRule);
 
-		if(masterGameRule.Read("charamode") == "multi")
+		if (masterGameRule.Read("charamode") == "multi")
 		{
 			chara_control.m_multiSprite.enabled = true;
 			chara_control.m_singleSprite.enabled = false;
@@ -176,15 +184,23 @@ public class DataManager : DataManagerBase<DataManager>
 		masterSkin.Load(textMasterSkin);
 		masterAccessary.Load(textMasterAccessary);
 
+#if UNITY_EDITOR
+
+		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+
+#endif
+
+
 		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
 		dataItem = new DataItem();
 		dataItem.SetSaveFilename(data_item);
 		if (false == dataItem.LoadMulti(data_item))
 		{
 			List<MasterItemParam> initiali_data_list = masterItem.list.FindAll(p => p.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic);
-			foreach( MasterItemParam param in initiali_data_list)
+			foreach (MasterItemParam param in initiali_data_list)
 			{
-				if( 0 < param.item_id /10)
+				if (0 < param.item_id / 10)
 				{
 					dataItem.AddItem(param.item_id, 0);
 				}
@@ -195,7 +211,7 @@ public class DataManager : DataManagerBase<DataManager>
 
 		string strUserData = string.Format("{0}/{1}", floder_name, "user_data");
 		user_data.SetSaveFilename(strUserData);
-		if ( false == user_data.LoadMulti(strUserData))
+		if (false == user_data.LoadMulti(strUserData))
 		{
 			// ユーザーデータの初期化処理
 			floor_current = 1;
@@ -222,7 +238,7 @@ public class DataManager : DataManagerBase<DataManager>
 			user_data.Write(Defines.KEY_SOUND_SE, 1.0f.ToString());
 		}
 
-		if(user_data.HasKey(Defines.KEY_CHARA_LEVEL))
+		if (user_data.HasKey(Defines.KEY_CHARA_LEVEL))
 		{
 			Debug.Log("chara_restore");
 			dataChara.Restore(user_data.ReadInt(Defines.KEY_CHARA_LEVEL));
@@ -238,9 +254,9 @@ public class DataManager : DataManagerBase<DataManager>
 		}
 
 
-		SetSpeedMeter(user_data.ReadInt(Defines.KEY_GAMESPEEDMETER) );
+		SetSpeedMeter(user_data.ReadInt(Defines.KEY_GAMESPEEDMETER));
 
-		if(user_data.HasKey(Defines.KEY_GAMESPEED_LEVEL))
+		if (user_data.HasKey(Defines.KEY_GAMESPEED_LEVEL))
 		{
 			int game_speed_level = user_data.ReadInt(Defines.KEY_GAMESPEED_LEVEL);
 			//Debug.Log(game_speed_level);
@@ -248,7 +264,7 @@ public class DataManager : DataManagerBase<DataManager>
 		}
 
 		//Debug.Log(user_data.list.Count);
-		foreach ( CsvKvsParam p in user_data.list)
+		foreach (CsvKvsParam p in user_data.list)
 		{
 			//Debug.Log(p.key);
 		}
@@ -257,6 +273,7 @@ public class DataManager : DataManagerBase<DataManager>
 		Initialized = true;
 
 	}
+
 
 	public void SetSpeedMeter(int value)
 	{

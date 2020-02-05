@@ -173,15 +173,15 @@ public class GameMain : Singleton<GameMain> {
 		m_sprBackGround.sprite = SpriteManager.Instance.Get(_dungeon.background);
 	}
 
-	public void ChangeCharaTexture(string _strTextureName)
+	public void ChangeCharaTexture(MasterSkinParam _masterSkin)
 	{
 		if (charaControl.m_multiSprite.enabled == true)
 		{
-			charaControl.override_sprite.overrideTexture = TextureManager.Instance.Get(_strTextureName);
+			charaControl.override_sprite.overrideTexture = TextureManager.Instance.Get(_masterSkin.texture_name);
 		}
 		else
 		{
-			charaControl.m_singleSprite.sprite = SpriteManager.Instance.Get(_strTextureName);
+			charaControl.m_singleSprite.sprite = SpriteManager.Instance.Get(_masterSkin.sprite_name);
 		}
 
 	}

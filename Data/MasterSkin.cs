@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MasterSkinParam :CsvDataParam
+public class MasterSkinParam : CsvDataParam
 {
 	public int skin_id { get; set; }
 	public int item_id { get; set; }
@@ -11,6 +11,9 @@ public class MasterSkinParam :CsvDataParam
 	public string skin_outline { get; set; }
 
 	public string texture_name { get; set; }
+	public string sprite_name { get; set; }
+
+	public bool limit{ get; set; }
 }
 
 public class MasterSkin : CsvData<MasterSkinParam> {

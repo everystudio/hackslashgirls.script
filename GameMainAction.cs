@@ -97,7 +97,7 @@ namespace GameMainAction {
 			{
 				skin_id.Value = use_skin_id;
 				MasterSkinParam master_skin = DataManager.Instance.masterSkin.list.Find(p => p.skin_id == use_skin_id);
-				GameMain.Instance.ChangeCharaTexture(master_skin.texture_name);
+				GameMain.Instance.ChangeCharaTexture(master_skin);
 			}
 
 
