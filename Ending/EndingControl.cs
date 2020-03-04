@@ -8,6 +8,7 @@ using System;
 public class EndingControl : MonoBehaviour {
 
 	private string floder_name = "test1";
+	public static readonly string SS_MASTER = "1x5AkI593bJ9GtKUCItDk45h24xkIQIbXVNct9DhWD2U";
 
 	public void ReturnGame()
 	{
@@ -40,7 +41,7 @@ public class EndingControl : MonoBehaviour {
 	DataKvs user_data;
 
 	public SpriteRenderer bg;
-	public OverrideSprite chara;
+	public SpriteRenderer chara;
 
 	public GameObject ui_root;
 
@@ -57,6 +58,13 @@ public class EndingControl : MonoBehaviour {
 		masterDungeon.Load(textMasterDungeon);
 		masterSkin.Load(textMasterSkin);
 
+#if UNITY_EDITOR
+		yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
+		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+#endif
+
+
 		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
 		dataItem = new DataItem();
 		dataItem.LoadMulti(data_item);
@@ -69,6 +77,9 @@ public class EndingControl : MonoBehaviour {
 		user_data.LoadMulti(strUserData);
 
 		yield return null;
+
+
+
 
 		int skin_id = 1;
 		if(user_data.HasKey(Defines.KEY_USE_SKIN_ID))
@@ -83,7 +94,9 @@ public class EndingControl : MonoBehaviour {
 		}
 
 		MasterSkinParam skin = masterSkin.list.Find(p => p.skin_id == skin_id);
-		chara.overrideTexture = TextureManager.Instance.Get(skin.texture_name);
+		Debug.Log(skin.sprite_name);
+		Debug.Log(SpriteManager.Instance.Get(skin.sprite_name));
+		chara.sprite = SpriteManager.Instance.Get(skin.sprite_name);
 
 
 		MasterDungeonParam dungeon = masterDungeon.list.Find(p => p.dungeon_id == user_data.Read(Defines.KEY_DUNGEON_ID));

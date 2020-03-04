@@ -52,7 +52,8 @@ namespace GemBookAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			gemBook.m_btnGem.gameObject.SetActive(false);
+			//gemBook.m_btnGem.gameObject.SetActive(false);
+			gemBook.m_animButton.SetBool("show", false);
 			gemBook.m_panelBookCheck.gameObject.SetActive(false);
 			Finish();
 		}
@@ -86,7 +87,9 @@ namespace GemBookAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			gemBook.m_btnGem.gameObject.SetActive(true);
+			gemBook.m_animButton.SetBool("show", true);
+
+			//gemBook.m_btnGem.gameObject.SetActive(true);
 			gemBook.m_panelBookCheck.gameObject.SetActive(false);
 
 			gemBook.m_btnGem.onClick.AddListener(() =>

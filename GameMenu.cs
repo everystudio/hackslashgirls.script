@@ -8,4 +8,6 @@ public class GameMenu : MonoBehaviour {
 
 	public GameObject m_goMenuRoot;
 
+	public MedalGet medal_get;
+
 }

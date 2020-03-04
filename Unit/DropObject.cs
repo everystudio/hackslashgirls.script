@@ -65,6 +65,8 @@ public class DropObject : MonoBehaviour {
 				DataManager.Instance.dataItem.Save();
 				GameMain.Instance.BattleLog(string.Format("<color=#00ffff>{0}</color>を手に入れた", m_masterItemParam.name));
 				SEControl.Instance.Play("eat");
+
+				GameMain.Instance.btn_medal.ShowUpdate();
 			}
 
 			Destroy(gameObject.GetComponent<Rigidbody2D>());

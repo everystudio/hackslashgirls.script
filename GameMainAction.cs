@@ -26,14 +26,19 @@ namespace GameMainAction {
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			Defines.CurrentDungeonID = "";		// 差分検出用
+			Defines.CurrentDungeonID = "";      // 差分検出用
+			NTPTimer.Instance.RequestRefresh((_result) =>
+			{
+				Debug.Log(_result);
+			});
 		}
 
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
-			if (DataManager.Instance.Initialized)
+			if (DataManager.Instance.Initialized && NTPTimer.Instance.Initialized)
 			{
+				Debug.Log(NTPTimer.Instance.now);
 				// 旧バージョン補正
 				if(DataManager.Instance.user_data.HasKey(Defines.KEY_CHARA_FLOOR_BEST))
 				{
@@ -112,10 +117,17 @@ namespace GameMainAction {
 				dungeon_id.Value = "normal";
 			}
 
+			MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
+
+			//Debug.Log(Defines.CurrentDungeonID);
+			Debug.Log(master_dungeon.item_id_medal);
+			gameMain.btn_medal.gameObject.SetActive(0 < master_dungeon.item_id_medal);
+			gameMain.btn_medal.SetMedalId(master_dungeon.item_id_medal);
+
+
 			if ( dungeon_id.Value != Defines.CurrentDungeonID)
 			{
 				Defines.CurrentDungeonID = dungeon_id.Value;
-				MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
 
 				//Debug.Log(dungeon_id.Value);
 				// 背景切り替え
