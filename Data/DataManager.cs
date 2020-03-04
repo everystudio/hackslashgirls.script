@@ -57,6 +57,8 @@ public class DataManager : DataManagerBase<DataManager>
 	public AdsBanner adsbanner_top;
 	public AdsBanner adsbanner_bottom;
 
+	public bool load_network;
+
 	public void SaveAll()
 	{
 		dataItem.Save();
@@ -185,16 +187,23 @@ public class DataManager : DataManagerBase<DataManager>
 		masterAccessary.Load(textMasterAccessary);
 
 #if UNITY_EDITOR
-		yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
-		yield return StartCoroutine(masterFloor.SpreadSheet(SS_MASTER, "floor", () => { }));
-		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
 
-		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
-		yield return StartCoroutine(masterEnemy.SpreadSheet(SS_MASTER, "enemy", () => { }));
-		yield return StartCoroutine(masterMedalPrize.SpreadSheet(SS_MASTER, "medal_prize", () => { }));
-		yield return StartCoroutine(masterAccessary.SpreadSheet(SS_MASTER, "accessary", () => { }));
-
+#else
+		load_network = false;
 #endif
+
+		if (load_network)
+		{
+			yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
+			yield return StartCoroutine(masterFloor.SpreadSheet(SS_MASTER, "floor", () => { }));
+			yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+
+			yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+			yield return StartCoroutine(masterEnemy.SpreadSheet(SS_MASTER, "enemy", () => { }));
+			yield return StartCoroutine(masterMedalPrize.SpreadSheet(SS_MASTER, "medal_prize", () => { }));
+			yield return StartCoroutine(masterAccessary.SpreadSheet(SS_MASTER, "accessary", () => { }));
+
+		}
 
 
 		string data_item = string.Format("{0}/{1}", floder_name, "data_item");
@@ -276,6 +285,8 @@ public class DataManager : DataManagerBase<DataManager>
 		Debug.Log("datamanager.initialized");
 
 		Initialized = true;
+
+		yield return null;
 
 	}
 
