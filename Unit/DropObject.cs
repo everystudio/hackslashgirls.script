@@ -61,10 +61,14 @@ public class DropObject : MonoBehaviour {
 			{
 				DataManager.Instance.dataItem.AddItem(m_masterItemParam.item_id, 1);
 				DataItemParam data_param = DataManager.Instance.dataItem.list.Find(p => p.item_id == m_masterItemParam.item_id);
+
 				GameMain.Instance.ShortcutRefresh(data_param.serial);
+				GameMain.Instance.btn_medal.ShowUpdate();
+
 				DataManager.Instance.dataItem.Save();
 				GameMain.Instance.BattleLog(string.Format("<color=#00ffff>{0}</color>を手に入れた", m_masterItemParam.name));
 				SEControl.Instance.Play("eat");
+
 			}
 
 			Destroy(gameObject.GetComponent<Rigidbody2D>());

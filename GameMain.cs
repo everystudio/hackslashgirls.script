@@ -25,7 +25,8 @@ public class GameMain : Singleton<GameMain> {
 	public SpriteRenderer m_sprBackGround;
 
 	public GameObject m_goSleepChara;
-	//public GameObject m_goSleepBack;
+
+	public BtnMedal btn_medal;
 
 	[SerializeField]
 	private PanelBattleLog battle_log;
@@ -33,7 +34,8 @@ public class GameMain : Singleton<GameMain> {
 	void Start()
 	{
 		m_prefEnemy.SetActive(false);
-
+		btn_medal.SetMedalId(0);
+		btn_medal.gameObject.SetActive(false);
 	}
 #if UNITY_EDITOR
 	public int chara_hp;
