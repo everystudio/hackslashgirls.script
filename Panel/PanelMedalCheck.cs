@@ -13,7 +13,7 @@ public class PanelMedalCheck : MonoBehaviour {
 
 	public static int GetBookGemNum()
 	{
-		int num = 20;
+		int num = 10;
 		return num;
 	}
 
