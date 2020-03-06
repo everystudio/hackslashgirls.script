@@ -186,8 +186,10 @@ public class DataManager : DataManagerBase<DataManager>
 
 #if UNITY_EDITOR
 
+		/*
 		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
 		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+		*/
 
 #endif
 
@@ -272,6 +274,7 @@ public class DataManager : DataManagerBase<DataManager>
 
 		Initialized = true;
 
+		yield return null;
 	}
 
 
