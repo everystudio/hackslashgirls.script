@@ -7,7 +7,7 @@ public class DataManager : DataManagerBase<DataManager>
 {
 	string floder_name = "test1";
 
-	public static readonly string SS_MASTER = "1x5AkI593bJ9GtKUCItDk45h24xkIQIbXVNct9DhWD2U";
+	public static readonly string SS_MASTER = "1O8UnFA_ZBv5T5atyJiEP3IcaqLc8MAB_0Wc3PgjcmfA";
 
 	public const float LONG_TAP_TIME = 0.5f;
 
@@ -45,6 +45,8 @@ public class DataManager : DataManagerBase<DataManager>
 	public DataCharaParam dataChara = new DataCharaParam();
 
 	public GameSpeedControl gameSpeedControl;
+
+	public bool bUseSSData;
 
 	[HideInInspector]
 	public DataKvs dataQuest;
@@ -185,12 +187,17 @@ public class DataManager : DataManagerBase<DataManager>
 		masterAccessary.Load(textMasterAccessary);
 
 #if UNITY_EDITOR
-
-		/*
-		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
-		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
-		*/
-
+		if (bUseSSData)
+		{
+			yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+			yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+			yield return StartCoroutine(masterEnemy.SpreadSheet(SS_MASTER, "enemy", () => { }));
+			yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
+			yield return StartCoroutine(masterFloor.SpreadSheet(SS_MASTER, "floor", () => { }));
+			yield return StartCoroutine(masterMedalPrize.SpreadSheet(SS_MASTER, "medal_prize", () => { }));
+		}
+#else
+		bUseSSData = false;
 #endif
 
 

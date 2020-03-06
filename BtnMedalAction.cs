@@ -223,7 +223,7 @@ namespace BtnMedalAction
 					Defines.KEY_LAST_REWARD_TIME,
 					NTPTimer.Instance.now.ToString("yyyy/MM/dd HH:mm:ss"));
 
-				DataManager.Instance.dataItem.AddItem(btnMedal.medal_item_id, 20);
+				DataManager.Instance.dataItem.AddItem(btnMedal.medal_item_id, 10);
 				DataManager.Instance.dataItem.Save();
 				btnMedal.ShowUpdate();
 			}

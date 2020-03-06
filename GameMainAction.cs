@@ -124,7 +124,7 @@ namespace GameMainAction {
 			MasterDungeonParam master_dungeon = DataManager.Instance.masterDungeon.list.Find(p => p.dungeon_id == dungeon_id.Value);
 
 			//Debug.Log(Defines.CurrentDungeonID);
-			Debug.Log(master_dungeon.item_id_medal);
+			//Debug.Log(master_dungeon.item_id_medal);
 			gameMain.btn_medal.gameObject.SetActive(0 < master_dungeon.item_id_medal);
 			gameMain.btn_medal.SetMedalId(master_dungeon.item_id_medal);
 

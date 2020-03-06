@@ -29,7 +29,7 @@ public class BtnMedal : MonoBehaviour {
 	}
 	public void SetMedalId(int _iItemId)
 	{
-		Debug.Log(_iItemId);
+		//Debug.Log(_iItemId);
 		medal_item_id = _iItemId;
 
 		if (0 < _iItemId)
