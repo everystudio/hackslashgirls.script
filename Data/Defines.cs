@@ -13,6 +13,7 @@ public class Defines  {
 
 	public const string KEY_GAMESPEED_LEVEL = "game_speed_level";
 	public const string KEY_GAMESPEEDMETER = "game_speed_meter";
+	public const string KEY_LAST_REWARD_TIME = "KEY_LAST_REWARD_TIME";
 
 	public const string KEY_DUNGEON_ID = "dungeon_id";
 
