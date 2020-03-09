@@ -78,6 +78,7 @@ public class ConfigHolderEditor : ScriptableObject
 
 					if (args[i + 1] == "development")
 					{
+						PlayerSettings.productName = string.Format("Dev{0}", PlayerSettings.productName);
 						PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, PlayerSettings.applicationIdentifier + ".development");
 					}
 					break;
