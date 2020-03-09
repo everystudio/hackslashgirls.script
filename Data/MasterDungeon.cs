@@ -20,7 +20,8 @@ public class MasterDungeonParam : CsvDataParam
 	public string clear_comment { get; set; }
 	public int prize_id_1 { get; set; }
 	public int prize_id_2 { get; set; }
-
+	public int prize_id_1_num { get; set; }
+	public int prize_id_2_num { get; set; }
 
 }
 

@@ -49,6 +49,8 @@ public class EndingControl : MonoBehaviour {
 
 	public GameObject m_goAutoCloseMessage;
 
+	public bool use_ss_data;
+
 	IEnumerator Start()
 	{
 		m_goAutoCloseMessage.SetActive(false);
@@ -59,9 +61,12 @@ public class EndingControl : MonoBehaviour {
 		masterSkin.Load(textMasterSkin);
 
 #if UNITY_EDITOR
-		yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
-		yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
-		yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+		if (use_ss_data)
+		{
+			yield return StartCoroutine(masterDungeon.SpreadSheet(SS_MASTER, "dungeon", () => { }));
+			yield return StartCoroutine(masterSkin.SpreadSheet(SS_MASTER, "skin", () => { }));
+			yield return StartCoroutine(masterItem.SpreadSheet(SS_MASTER, "item", () => { }));
+		}
 #endif
 
 
@@ -121,12 +126,12 @@ public class EndingControl : MonoBehaviour {
 			{
 				MasterItemParam master_item_prize1 = masterItem.list.Find(p => p.item_id == dungeon.prize_id_1);
 
-				dataItem.AddItem(master_item_prize1,dungeon.prize_id_1, 1);
+				dataItem.AddItem(master_item_prize1,dungeon.prize_id_1, dungeon.prize_id_1_num);
 			}
 			if (dungeon.prize_id_2 != 0)
 			{
 				MasterItemParam master_item_prize2 = masterItem.list.Find(p => p.item_id == dungeon.prize_id_2);
-				dataItem.AddItem(master_item_prize2,dungeon.prize_id_2, 1);
+				dataItem.AddItem(master_item_prize2,dungeon.prize_id_2, dungeon.prize_id_2_num);
 			}
 			dataItem.Save();
 		}

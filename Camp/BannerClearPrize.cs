@@ -9,7 +9,7 @@ public class BannerClearPrize : MonoBehaviour {
 	public TMPro.TextMeshProUGUI m_txtName;
 	public TMPro.TextMeshProUGUI m_txtBikou;
 
-	public void Initialize( MasterItemParam _master)
+	public void Initialize( MasterItemParam _master , int _iNum)
 	{
 		if(_master == null)
 		{
@@ -20,6 +20,11 @@ public class BannerClearPrize : MonoBehaviour {
 		m_imgIcon.sprite = SpriteManager.Instance.Get(_master.sprite_name);
 		m_imgIcon.color = _master.GetSpriteColor();
 		m_txtName.text = _master.name;
+
+		if( 1 < _iNum)
+		{
+			m_txtName.text = string.Format("{0}x{1}", _master.name, _iNum);
+		}
 
 		m_txtBikou.text = "";
 

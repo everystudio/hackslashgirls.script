@@ -108,8 +108,8 @@ namespace CampMainAction {
 			MasterItemParam prize_item_1 = DataManager.Instance.masterItem.list.Find(p => p.item_id == master_dungeon.prize_id_1);
 			MasterItemParam prize_item_2 = DataManager.Instance.masterItem.list.Find(p => p.item_id == master_dungeon.prize_id_2);
 
-			campMain.prize_1.Initialize(prize_item_1);
-			campMain.prize_2.Initialize(prize_item_2);
+			campMain.prize_1.Initialize(prize_item_1 , master_dungeon.prize_id_1_num);
+			campMain.prize_2.Initialize(prize_item_2 , master_dungeon.prize_id_2_num);
 
 			if( prize_item_1 == null)
 			{
