@@ -30,6 +30,11 @@ namespace GameMainAction {
 			NTPTimer.Instance.RequestRefresh((_result) =>
 			{
 				Debug.Log(_result);
+				if( _result == false)
+				{
+					Fsm.Event("network_error");
+				}
+
 			});
 		}
 

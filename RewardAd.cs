@@ -82,7 +82,7 @@ public class RewardAd : Singleton<RewardAd> {
 #if UNITY_ANDROID
             string adUnitId = "ca-app-pub-3940256099942544/5224354917";
 #elif UNITY_IPHONE
-		string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+		string adUnitId = "ca-app-pub-5869235725006697/4145631864";
 #else
             string adUnitId = "unexpected_platform";
 #endif
