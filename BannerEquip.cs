@@ -43,7 +43,7 @@ public class BannerEquip : MonoBehaviour
 
 	public void Initialize()
 	{
-		m_txtName.text = "はずす";
+		m_txtName.text = "Remove";
 		m_txtDetail.text = "";
 		m_imgIcon.sprite = SpriteManager.Instance.Get("UI_Icon_GenderMale2");
 		m_imgIcon.color = Color.white;

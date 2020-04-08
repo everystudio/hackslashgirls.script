@@ -337,11 +337,11 @@ public class DataManager : DataManagerBase<DataManager>
 				}
 				if (0 < iAddCoin)
 				{
-					GameMain.Instance.BattleLog(string.Format("放置ボーナスで<color=#FF0>{0}</color>コインゲット" , iAddCoin));
+					GameMain.Instance.BattleLog(string.Format("Comeback bonus <color=#FF0>{0}</color>Coin Get" , iAddCoin));
 				}
 				if( 0 < iAddGem)
 				{
-					GameMain.Instance.BattleLog(string.Format("放置ボーナスで<color=#ff00ff>{0}</color>Gemゲット", iAddGem));
+					GameMain.Instance.BattleLog(string.Format("Comeback bonus <color=#ff00ff>{0}</color>Gem Get", iAddGem));
 				}
 				PlayerPrefs.DeleteKey("sleep_time");
 				PlayerPrefs.Save();

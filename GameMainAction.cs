@@ -349,7 +349,7 @@ namespace GameMainAction {
 				{
 					int iAddGem = 10;
 					DataManager.Instance.user_data.AddInt(Defines.KeyGem, iAddGem);
-					GameMain.Instance.BattleLog(string.Format("<color=#0FF>フロア更新ボーナス</color>：Gem<color=#F00>{0}</color>個獲得", iAddGem));
+					GameMain.Instance.BattleLog(string.Format("<color=#0FF>New Floor Bonus</color>：<color=#F00>{0}</color> Gems get", iAddGem));
 				}
 				DataManager.Instance.SaveAll();
 

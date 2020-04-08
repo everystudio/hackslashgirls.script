@@ -25,7 +25,7 @@ namespace PanelCraftAction {
 
 			GameMain.Instance.Message(PanelMessage.MENU.MESSAGE_CRAFT);
 
-			panel.m_txtElement.text = "素材";
+			panel.m_txtElement.text = "Element";
 		}
 		public override void OnUpdate()
 		{
@@ -179,7 +179,7 @@ namespace PanelCraftAction {
 
 			int iAddCraftCount = panel.m_iCraftBulkCount;
 
-			panel.m_txtElement.text = string.Format("強化1回あたり<color=#FF0>{0}ジェム</color>必要", master_now.craft_gem_num);
+			panel.m_txtElement.text = string.Format("Need <color=#FF0>{0} Gems</color>/1 Craft", master_now.craft_gem_num);
 
 			string now_item_name = master_now.GetItemName(data.craft_count);
 
@@ -189,16 +189,16 @@ namespace PanelCraftAction {
 			switch( category)
 			{
 				case MasterItem.CategoryWeapon:
-					bikou = "：Atkが上がります";
+					bikou = "：Atk goes up";
 					break;
 				case MasterItem.CategoryArmor:
-					bikou = "：Defが上がります";
+					bikou = "：Def goes up";
 					break;
 				case MasterItem.CategoryBracelet:
-					bikou = "：Staminaの最大値が上がります";
+					bikou = "：Increases stamina maximum";
 					break;
 				case MasterItem.CategoryCloak:
-					bikou = "：最大HPが上がります";
+					bikou = "：Maximum HP goes up";
 					break;
 				case MasterItem.CategoryHelmet:
 					bikou = "：Magが上がります(魔法攻撃力アップ)";
@@ -219,7 +219,7 @@ namespace PanelCraftAction {
 				}
 				else
 				{
-					next_item_name = "強化限界に到達します";
+					next_item_name = "Reach the enhancement limit";
 				}
 			}
 			else

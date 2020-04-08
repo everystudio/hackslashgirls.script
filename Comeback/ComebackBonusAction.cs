@@ -179,7 +179,7 @@ namespace ComebackBonusAction {
 			{
 				bShow = true;
 
-				string str = string.Format("放置ボーナスで<color=#FF0>{0}</color>コインゲット", iAddCoin);
+				string str = string.Format("Comeback Bonus:<color=#FF0>{0}</color> Coins get", iAddCoin);
 				comebackBonus.m_txtCoin.text = string.Format("x {0}" , iAddCoin);
 				GameMain.Instance.BattleLog(str);
 				comebackBonus.m_goCoin.SetActive(true);
@@ -192,7 +192,7 @@ namespace ComebackBonusAction {
 				bShow = true;
 
 				comebackBonus.m_goGem.SetActive(true);
-				string str = string.Format("放置ボーナスで<color=#ff00ff>{0}</color>Gemゲット", iAddGem);
+				string str = string.Format("Comeback Bonus:<color=#ff00ff>{0}</color> Gems get", iAddGem);
 				comebackBonus.m_txtGem.text = string.Format("x {0}", iAddGem);
 				DataManager.Instance.user_data.AddInt(Defines.KeyGem, iAddGem);
 

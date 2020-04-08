@@ -68,7 +68,7 @@ public class AccessaryBase : MonoBehaviour {
 					}
 					else
 					{
-						GameMain.Instance.BattleLog("アイテムの使用に失敗");
+						GameMain.Instance.BattleLog("Failed to use item");
 					}
 				}
 			}
@@ -85,7 +85,7 @@ public class AccessaryBase : MonoBehaviour {
 					}
 					else
 					{
-						GameMain.Instance.BattleLog("アイテムの使用に失敗");
+						GameMain.Instance.BattleLog("Failed to use item");
 					}
 				}
 			}
@@ -102,7 +102,7 @@ public class AccessaryBase : MonoBehaviour {
 					}
 					else
 					{
-						GameMain.Instance.BattleLog("アイテムの使用に失敗");
+						GameMain.Instance.BattleLog("Failed to use item");
 					}
 				}
 			}

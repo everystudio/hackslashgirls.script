@@ -26,6 +26,7 @@ public class PanelBookCheck : MonoBehaviour {
 	{
 		int num = GetBookGemNum();
 		m_txtMessage.text = string.Format("動画視聴を行うと、\n<color=#0FF>{0}</color>個のジェムを\n獲得できます", num);
+		m_txtMessage.text = string.Format("Watch the video and\nget <color=#0FF>{0}</color> gems", num);
 
 		return num;
 	}

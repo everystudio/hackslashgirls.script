@@ -54,7 +54,7 @@ public class DropObject : MonoBehaviour {
 				DataItemParam data_param = DataManager.Instance.dataItem.list.Find(p => p.item_id == iGetItemId);
 				GameMain.Instance.ShortcutRefresh(data_param.serial);
 				DataManager.Instance.dataItem.Save();
-				GameMain.Instance.BattleLog(string.Format("<color=#00ffff>{0}</color>を手に入れた", gem_book.name));
+				GameMain.Instance.BattleLog(string.Format("Get <color=#00ffff>{0}</color>", gem_book.name));
 				SEControl.Instance.Play("eat");
 			}
 			else
@@ -63,7 +63,7 @@ public class DropObject : MonoBehaviour {
 				DataItemParam data_param = DataManager.Instance.dataItem.list.Find(p => p.item_id == m_masterItemParam.item_id);
 				GameMain.Instance.ShortcutRefresh(data_param.serial);
 				DataManager.Instance.dataItem.Save();
-				GameMain.Instance.BattleLog(string.Format("<color=#00ffff>{0}</color>を手に入れた", m_masterItemParam.name));
+				GameMain.Instance.BattleLog(string.Format("Get <color=#00ffff>{0}</color>", m_masterItemParam.name));
 				SEControl.Instance.Play("eat");
 
 				GameMain.Instance.btn_medal.ShowUpdate();

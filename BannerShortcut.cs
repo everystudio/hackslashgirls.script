@@ -45,8 +45,8 @@ public class BannerShortcut : MonoBehaviour {
 			m_imgIcon.sprite = SpriteManager.Instance.Get("UI_Icon_GenderMale2");
 			m_imgIcon.color = Color.white;
 
-			m_txtNum.text = "はずす";
-			m_txtName.text = "ショートカットを\n未設定状態にします";
+			m_txtNum.text = "Remove";
+			m_txtName.text = "Set Empty";
 			m_txtDetail.text = "";
 
 			return;

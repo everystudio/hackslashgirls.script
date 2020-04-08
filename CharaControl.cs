@@ -149,7 +149,7 @@ public class CharaControl : MonoBehaviour {
 		obj.GetComponent<Rigidbody2D>().AddForce( 200f * dir );
 		Destroy(obj, 2);
 		DataManager.Instance.dataChara.hp -= iDamageResult;
-		GameMain.Instance.BattleLog(string.Format("<color=red>{0}</color>のダメージを受けた！", iDamageResult));
+		GameMain.Instance.BattleLog(string.Format("Take <color=red>{0}</color> damage！", iDamageResult));
 	}
 
 	public bool Heal( int _iHeal)

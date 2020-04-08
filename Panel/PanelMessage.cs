@@ -85,21 +85,21 @@ public class PanelMessage : MonoBehaviour {
 	public List<List<string>> messages = new List<List<string>>
 	{
 		new List<string>() {
-			"武器を装備すると、攻撃力(Atk)が上がります。",
-			"攻撃力が高くなれば、与えるダメージがアップします"
+			"Equip weapons to increase attack power",
+			"The higher the attack power, the more damage you deal"
 		},
 		new List<string>() {
-			"防具を装備すると、防御力(Def)が上がります",
-			"防御力を高くすることで受けるダメージを軽減することが可能です"
+			"Equip armor to increase defense",
+			"It is possible to reduce the damage received by increasing the defense"
 		},
 		new List<string>() {
-			"腕輪を装備すると、スタミナ(Stamina)の最大値を上げることができます",
-			"スタミナが少ない状態では、攻撃スピードが落ちて、相手から先制されることがあります",
-			"パンなどを食べて、空腹状態にしないように注意しましょう。",
+			"Equip your bangles to increase your maximum stamina",
+			"If you have low stamina, your attack speed may drop and your opponent may preempt you",
+			"Eat bread and be careful not to be hungry.",
 		},
 		new List<string>() {
-			"マントを装備すると、最大HPをアップさせることができます",
-			"以上！",
+			"Equip your cloak to increase your maximum HP.",
+			"that's all!",
 		},
 		new List<string>() {
 			"ヘルムを装備すると、魔法攻撃力(Mag)をアップさせることができます",
@@ -107,14 +107,14 @@ public class PanelMessage : MonoBehaviour {
 			"武器攻撃だけで突破が難しい場合は魔法も併用しましょう",
 		},
 		new List<string>() {
-			"クラフトでは装備アイテムの強化が可能です",
-			"強化するには各装備ごとに必要な強化素材とGemが必要になります",
-			"一度にまとめて複数回強化することも可能です",
+			"Craft items can enhance equipment items.",
+			"To strengthen, you need the necessary reinforcement materials and gems for each equipment.",
+			"It is also possible to strengthen several times at once",
 		},
 		new List<string>() {
-			"ショートカットにアイテムを登録するとワンタッチでアイテムを利用できます",
-			"装備品をセットした場合は、素早く切り替えることが可能です",
-			"<color=red>長押し</color>でセット中のショートカット内容を変更することも可能です",
+			"If you register an item as a shortcut, you can use the item with one touch",
+			"If you set equipment, you can switch quickly",
+			"It is also possible to change the contents of the shortcut being set by <color=red>pressing and holding</color>",
 		},
 
 

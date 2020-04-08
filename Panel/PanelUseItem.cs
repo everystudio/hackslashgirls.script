@@ -68,11 +68,11 @@ public class PanelUseItem : MonoBehaviour {
 		{
 			if (Advertisement.IsReady())
 			{
-				m_txtDetail.text += "\n<color=green>現在使用可能です</color>";
+				m_txtDetail.text += "\n<color=green>Available now</color>";
 			}
 			else
 			{
-				m_txtDetail.text += "\n<color=red>現在使用できません。しばらく時間を空けて下さい</color>";
+				m_txtDetail.text += "\n<color=red>This currently can not be used</color>";
 			}
 		}
 
@@ -82,21 +82,21 @@ public class PanelUseItem : MonoBehaviour {
 		if (master_param.item_id / MasterItem.LargeCategory <= MasterItem.CategoryMagic)
 		{
 			m_txtName.text = master_param.name;
-			m_txtAct.text = "使用";
-			m_txtDelete.text = "捨てる";
+			m_txtAct.text = "Use";
+			m_txtDelete.text = "Remove";
 
 		}
 		else if (master_param.item_id / MasterItem.LargeCategory == MasterItem.CategorySkin)
 		{
 			m_txtName.text = master_param.name;
 			m_txtAct.text = "----";
-			m_txtDelete.text = "捨てる";
+			m_txtDelete.text = "Remove";
 		}
 		else if (master_param.item_id / MasterItem.LargeCategory == MasterItem.CategoryAccessary)
 		{
 			m_txtName.text = master_param.name;
 			m_txtAct.text = "----";
-			m_txtDelete.text = "捨てる";
+			m_txtDelete.text = "Remove";
 
 			m_btnAct.interactable = false;
 			m_btnDelete.interactable = false;
@@ -105,8 +105,8 @@ public class PanelUseItem : MonoBehaviour {
 		else
 		{
 			m_txtName.text = master_param.GetItemName(data_param.craft_count);
-			m_txtAct.text = "装備";
-			m_txtDelete.text = string.Format("Gem変換\n{0}個", data_param.craft_count); ;
+			m_txtAct.text = "Equip";
+			m_txtDelete.text = string.Format("Exchange \n{0} Gems", data_param.craft_count); ;
 		}
 
 	}

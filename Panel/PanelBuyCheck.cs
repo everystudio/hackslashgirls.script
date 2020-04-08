@@ -43,7 +43,7 @@ public class PanelBuyCheck : MonoBehaviour {
 		{
 			iNum += data.num;
 		}
-		m_txtNum.text = string.Format("所持数：{0}", iNum);
+		m_txtNum.text = string.Format("{0}", iNum);
 
 		bool bAbleBulk = MasterItem.AbleBulkBuy(_iItemId);
 
@@ -53,13 +53,13 @@ public class PanelBuyCheck : MonoBehaviour {
 		{
 			m_btnPlus.interactable = true;
 			m_btnMinus.interactable = true;
-			m_txtBulkBuy.text = "まとめて購入する\n回数を変更できます";
+			m_txtBulkBuy.text = "You can change the number\nof purchases in bulk";
 		}
 		else
 		{
 			m_btnPlus.interactable = false;
 			m_btnMinus.interactable = false;
-			m_txtBulkBuy.text = "このアイテムは\nまとめ買いできません";
+			m_txtBulkBuy.text = "This item cannot be\npurchased in bulk";
 
 			int equip_item_num = DataManager.Instance.dataItem.list.FindAll(p => MasterItem.CategoryMagic < p.item_id / MasterItem.LargeCategory).Count;
 			//Debug.Log(equip_item_num);
@@ -76,10 +76,10 @@ public class PanelBuyCheck : MonoBehaviour {
 		}
 		else
 		{
-			m_txtPrice.text = string.Format("計{0}Coin", master_param.price * _iBuyNum);
+			m_txtPrice.text = string.Format("{0}Coin", master_param.price * _iBuyNum);
 		}
 
-		m_txtBuyButtonLabel.text = string.Format("{0}個\n購入", _iBuyNum);
+		m_txtBuyButtonLabel.text = string.Format("{0} times\npurchase", _iBuyNum);
 
 		Color color_one = master_param.price * _iBuyNum <= DataManager.Instance.user_data.ReadInt(Defines.KeyCoin) ? Color.white : Color.gray;
 		m_btnBuy.gameObject.GetComponent<Image>().color = color_one;

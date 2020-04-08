@@ -63,9 +63,9 @@ public class PanelCraft : MonoBehaviour {
 	{
 		m_textCraftCount.text = string.Format("x{0}", m_iCraftBulkCount);
 
-		m_textBaseName.text = "強化するアイテムを選択";
-		m_textElementName.text = "素材にするアイテム";
-		m_textResultName.text = "強化結果";
+		m_textBaseName.text = "Select Base Item";
+		m_textElementName.text = "Element";
+		m_textResultName.text = "Craft Result";
 
 		CloseList();
 	}

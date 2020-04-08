@@ -42,7 +42,7 @@ public class BtnEquip : MonoBehaviour {
 			m_equipMaster = null;
 		}
 
-		string strName = "装備なし";
+		string strName = "Empty";
 		if( m_equipMaster != null)
 		{
 			strName = m_equipMaster.GetItemName(m_equipData.craft_count);

@@ -73,7 +73,7 @@ public class DataCharaParam : CsvDataParam
 			hunger -= _iHungry;
 			if (hunger == 0)
 			{
-				GameMain.Instance.BattleLog("<color=#FF0>空腹で倒れそうだ、早く何か食べなくては！</color>");
+				GameMain.Instance.BattleLog("<color=#FF0>I'm going to fall hungry, I have to eat something in a hurry!</color>");
 			}
 		}
 		/*
@@ -198,7 +198,7 @@ public class DataCharaParam : CsvDataParam
 	// 現在のレベルに合わせてパラメータを調整する
 	public void LevelUp()
 	{
-		GameMain.Instance.BattleLog(string.Format("レベルが{0}に上がった", level));
+		GameMain.Instance.BattleLog(string.Format("Level {0}", level));
 		// 経験値関係は補正されているとします
 
 		int temp_hp_max = hp_max_chara;

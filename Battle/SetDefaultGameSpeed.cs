@@ -35,7 +35,7 @@ public class SetDefaultGameSpeed : MonoBehaviour {
 			DataManager.Instance.user_data.Save();
 
 		}
-		GameMain.Instance.BattleLog("<color=yellow>現在のゲームスピードをデフォルトスピードに設定しました</color>");
+		GameMain.Instance.BattleLog("<color=yellow>Set current game speed to default speed</color>");
 
 	}
 

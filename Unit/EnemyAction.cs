@@ -184,7 +184,7 @@ namespace EnemyAction  {
 		{
 			base.OnEnter();
 
-			GameMain.Instance.BattleLog(string.Format("{0}を倒した", enemy.master_param.name));
+			GameMain.Instance.BattleLog(string.Format("Defeated {0}", enemy.master_param.name));
 
 			enemy.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 			enemy.enemy_param.is_dead = true;

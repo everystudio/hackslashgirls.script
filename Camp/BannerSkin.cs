@@ -45,7 +45,7 @@ public class BannerSkin : MonoBehaviour {
 
 		if (bShow == false)
 		{
-			m_txtDetail.text = string.Format("<color=red>未所持</color>:{0}", _master.skin_outline);
+			m_txtDetail.text = string.Format("<color=red>no</color>:{0}", _master.skin_outline);
 		}
 		else
 		{
