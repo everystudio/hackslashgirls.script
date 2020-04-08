@@ -69,7 +69,7 @@ namespace BtnMedalAction
 
 			if (0 < last_second)
 			{
-				btnMedal.m_txtLimitTime.text = string.Format("あと{0}:{1:00}", last_second / 60, last_second % 60);
+				btnMedal.m_txtLimitTime.text = string.Format("{0}:{1:00}", last_second / 60, last_second % 60);
 			}
 			else
 			{
