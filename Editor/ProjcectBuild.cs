@@ -8,7 +8,11 @@ using System.IO;
 #if UNITY_IOS
 using UnityEditor.iOS.Xcode;
 #endif
+#if UNITY_IOS
 public class Processor : IPreprocessBuild, IPostprocessBuild
+#else
+public class Processor : IPreprocessBuild
+#endif
 {
 
 	// ビルド前処理
@@ -16,6 +20,7 @@ public class Processor : IPreprocessBuild, IPostprocessBuild
 	{
 		if( target == BuildTarget.Android)
 		{
+			/*
 			PlayerSettings.Android.keystoreName = "./everystudio_everystudio_everypass.keystore";
 			PlayerSettings.Android.keystorePass = "everystudio";
 
@@ -23,6 +28,7 @@ public class Processor : IPreprocessBuild, IPostprocessBuild
 			PlayerSettings.Android.keyaliasPass = "everypass";
 
 			BuildScript.apk_filename = "android.apk";
+			*/
 		}
 		else if( target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64)
 		{
@@ -62,12 +68,12 @@ public class Processor : IPreprocessBuild, IPostprocessBuild
 
 	}
 
+#if UNITY_IOS
 	// ビルド後処理
 	[PostProcessBuild(1)]
 	public void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
 	{
 
-#if UNITY_IOS
 		// Get plist
 		string plistPath = pathToBuiltProject + "/Info.plist";
 		PlistDocument plist = new PlistDocument();
@@ -89,9 +95,8 @@ public class Processor : IPreprocessBuild, IPostprocessBuild
 
 		// Write to file
 		File.WriteAllText(plistPath, plist.WriteToString());
+}
 #endif
-
-	}
 
 	// 実行順
 	public int callbackOrder { get { return 0; } }
