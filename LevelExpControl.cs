@@ -18,8 +18,8 @@ public class LevelExpControl : MonoBehaviour {
 
 	[SerializeField]
 	private TextMeshProUGUI m_textLevel;
-	[SerializeField]
-	private EnergyBar exp_bar;
+	//[SerializeField]
+	//private EnergyBar exp_bar;
 
 	public void RefreshLevel()
 	{
@@ -51,8 +51,8 @@ public class LevelExpControl : MonoBehaviour {
 			exp_delta = exp - exp_pre;
 			exp_delta_max = exp_next - exp_pre;
 
-			exp_bar.SetValueCurrent((int)exp_delta);
-			exp_bar.SetValueMax((int)exp_delta_max);
+			//exp_bar.SetValueCurrent((int)exp_delta);
+			//exp_bar.SetValueMax((int)exp_delta_max);
 
 			//Debug.Log(exp_delta);
 			//Debug.Log(exp_delta_max);

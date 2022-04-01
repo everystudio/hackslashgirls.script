@@ -9,7 +9,7 @@ public class PanelBossStatus : MonoBehaviour {
 	public GameObject m_goRoot;
 
 	public TextMeshProUGUI m_txtBossName;
-	public EnergyBar m_barBossHp;
+	//public EnergyBar m_barBossHp;
 
 	public DataEnemyParam m_dataEnemyParam;
 	public MasterEnemyParam m_masterEnemyParam;
@@ -23,7 +23,7 @@ public class PanelBossStatus : MonoBehaviour {
 
 		m_txtBossName.text = m_masterEnemyParam.name;
 
-		m_barBossHp.SetValueMax(m_dataEnemyParam.hp_max);
+		//m_barBossHp.SetValueMax(m_dataEnemyParam.hp_max);
 	}
 
 	public void Disable()
@@ -35,7 +35,7 @@ public class PanelBossStatus : MonoBehaviour {
 	{
 		if( m_goRoot.activeSelf && m_dataEnemyParam != null )
 		{
-			m_barBossHp.SetValueCurrent(m_dataEnemyParam.hp);
+			//m_barBossHp.SetValueCurrent(m_dataEnemyParam.hp);
 		}
 	}
 

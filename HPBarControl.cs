@@ -13,8 +13,8 @@ public class HPBarControl : MonoBehaviour {
 	private int current_param;
 	private int max_param;
 
-	[SerializeField]
-	private EnergyBar energy_bar;
+	//[SerializeField]
+	//private EnergyBar energy_bar;
 
 	[SerializeField]
 	private TextMeshProUGUI text_param;
@@ -41,8 +41,8 @@ public class HPBarControl : MonoBehaviour {
 
 		text_param.text = string.Format("{0}/{1}", current_param, max_param);
 
-		energy_bar.SetValueMax(max_param);
-		energy_bar.SetValueCurrent(current_param);
+		//energy_bar.SetValueMax(max_param);
+		//energy_bar.SetValueCurrent(current_param);
 
 	}
 
